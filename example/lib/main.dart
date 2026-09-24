@@ -10,33 +10,35 @@ void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await SimpleLocalization.ensureInitialized();
 
-  runApp(SimpleLocalization(
-    supportedLocales: [
-      Locale('en', 'US'),
-      Locale('ar', 'DZ'),
-      Locale('de', 'DE'),
-      Locale('ru', 'RU')
-    ],
-    path: 'resources/langs',
-    child: MyApp(),
-    // fallbackLocale: Locale('en', 'US'),
-    // startLocale: Locale('de', 'DE'),
-    // saveLocale: false,
-    // useOnlyLangCode: true,
-    // ignorePluralRules: false,
+  runApp(
+    SimpleLocalization(
+      supportedLocales: [
+        Locale('en', 'US'),
+        Locale('ar', 'DZ'),
+        Locale('de', 'DE'),
+        Locale('ru', 'RU'),
+      ],
+      path: 'resources/langs',
+      child: MyApp(),
+      // fallbackLocale: Locale('en', 'US'),
+      // startLocale: Locale('de', 'DE'),
+      // saveLocale: false,
+      // useOnlyLangCode: true,
+      // ignorePluralRules: false,
 
-    // optional assetLoader default used is RootBundleAssetLoader which uses flutter's assetloader
-    // install simple_localization_loader for enable custom loaders
-    // assetLoader: RootBundleAssetLoader()
-    // assetLoader: HttpAssetLoader()
-    // assetLoader: FileAssetLoader()
-    // assetLoader: CsvAssetLoader()
-    // assetLoader: YamlAssetLoader() //multiple files
-    // assetLoader: YamlSingleAssetLoader() //single file
-    // assetLoader: XmlAssetLoader() //multiple files
-    // assetLoader: XmlSingleAssetLoader() //single file
-    // assetLoader: CodegenLoader()
-  ));
+      // optional assetLoader default used is RootBundleAssetLoader which uses flutter's assetloader
+      // install simple_localization_loader for enable custom loaders
+      // assetLoader: RootBundleAssetLoader()
+      // assetLoader: HttpAssetLoader()
+      // assetLoader: FileAssetLoader()
+      // assetLoader: CsvAssetLoader()
+      // assetLoader: YamlAssetLoader() //multiple files
+      // assetLoader: YamlSingleAssetLoader() //single file
+      // assetLoader: XmlAssetLoader() //multiple files
+      // assetLoader: XmlSingleAssetLoader() //single file
+      // assetLoader: CodegenLoader()
+    ),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -46,9 +48,7 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
+      theme: ThemeData(primarySwatch: Colors.blue),
       home: MyHomePage(title: 'Easy localization'),
     );
   }
@@ -90,13 +90,12 @@ class _MyHomePageState extends State<MyHomePage> {
               Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (_) => LanguageView(), fullscreenDialog: true),
+                  builder: (_) => LanguageView(),
+                  fullscreenDialog: true,
+                ),
               );
             },
-            child: Icon(
-              Icons.language,
-              color: Colors.white,
-            ),
+            child: Icon(Icons.language, color: Colors.white),
           ),
         ],
       ),
@@ -104,22 +103,22 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Spacer(
-              flex: 1,
-            ),
+            Spacer(flex: 1),
             Text(
               LocaleKeys.gender_with_arg,
               style: TextStyle(
-                  color: Colors.grey.shade600,
-                  fontSize: 19,
-                  fontWeight: FontWeight.bold),
+                color: Colors.grey.shade600,
+                fontSize: 19,
+                fontWeight: FontWeight.bold,
+              ),
             ).tr(args: ['aissat'], gender: _gender ? 'female' : 'male'),
             Text(
               tr(LocaleKeys.gender, gender: _gender ? 'female' : 'male'),
               style: TextStyle(
-                  color: Colors.grey.shade600,
-                  fontSize: 15,
-                  fontWeight: FontWeight.bold),
+                color: Colors.grey.shade600,
+                fontSize: 15,
+                fontWeight: FontWeight.bold,
+              ),
             ),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
@@ -129,9 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 FaIcon(FontAwesomeIcons.female),
               ],
             ),
-            Spacer(
-              flex: 1,
-            ),
+            Spacer(flex: 1),
             Text(LocaleKeys.msg).tr(args: ['aissat', 'Flutter']),
             Text(LocaleKeys.msg_named)
                 .tr(namedArgs: {'lang': 'Dart'}, args: ['Easy localization']),
@@ -142,29 +139,30 @@ class _MyHomePageState extends State<MyHomePage> {
               },
               child: Text(LocaleKeys.clickMe).tr(),
             ),
-            SizedBox(
-              height: 15,
-            ),
+            SizedBox(height: 15),
             Text(
-                plural(LocaleKeys.amount, counter,
-                    format: NumberFormat.currency(
-                        locale: Intl.defaultLocale, symbol: '€')),
-                style: TextStyle(
-                    color: Colors.grey.shade900,
-                    fontSize: 18,
-                    fontWeight: FontWeight.bold)),
-            SizedBox(
-              height: 20,
+              plural(
+                LocaleKeys.amount,
+                counter,
+                format: NumberFormat.currency(
+                  locale: Intl.defaultLocale,
+                  symbol: '€',
+                ),
+              ),
+              style: TextStyle(
+                color: Colors.grey.shade900,
+                fontSize: 18,
+                fontWeight: FontWeight.bold,
+              ),
             ),
+            SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 context.resetLocale();
               },
               child: Text(LocaleKeys.reset_locale).tr(),
             ),
-            Spacer(
-              flex: 1,
-            ),
+            Spacer(flex: 1),
           ],
         ),
       ),

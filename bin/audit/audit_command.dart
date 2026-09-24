@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:io';
+
 import 'package:simple_localization/src/linked_file_resolver.dart';
 import 'package:path/path.dart';
 import 'package:simple_localization/src/file_loaders/io_file_loader.dart';
@@ -11,7 +12,9 @@ class AuditCommand {
       final sourceDir = Directory(srcDir);
 
       if (!translationDir.existsSync()) {
-        stderr.writeln('Error: Translation directory "$transDir" does not exist.');
+        stderr.writeln(
+          'Error: Translation directory "$transDir" does not exist.',
+        );
         return;
       }
 
@@ -33,10 +36,14 @@ class AuditCommand {
   /// into dot‑separated keys, and returns a map:
   ///   { 'en': {'home.title', 'home.subtitle', …}, 'fr': { … } }
   /// Also handles linked translation files (those containing ':/file.json' references)
-  Future<Map<String, Set<String>>> _loadTranslations(Directory translationsDir) async {
+  Future<Map<String, Set<String>>> _loadTranslations(
+    Directory translationsDir,
+  ) async {
     final result = <String, Set<String>>{};
     const IOFileLoader fileLoader = IOFileLoader();
-    const LinkedFileResolver linkedFileResolver = JsonLinkedFileResolver(fileLoader: fileLoader);
+    const LinkedFileResolver linkedFileResolver = JsonLinkedFileResolver(
+      fileLoader: fileLoader,
+    );
 
     for (var file in translationsDir.listSync().whereType<File>()) {
       if (!file.path.endsWith('.json')) continue;
@@ -46,7 +53,8 @@ class AuditCommand {
         final langCode = local.split('-').first;
         final hasCountryCode = local.split('-').length > 1;
         final countryCode = hasCountryCode ? local.split('-').last : null;
-        final jsonMap = json.decode(file.readAsStringSync()) as Map<String, dynamic>;
+        final jsonMap =
+            json.decode(file.readAsStringSync()) as Map<String, dynamic>;
 
         // Process linked files if present using the shared resolver
         final resolvedJson = await linkedFileResolver.resolveLinkedFiles(
@@ -105,12 +113,18 @@ class AuditCommand {
       RegExp(r"""\bplural\s*\(\s*['"]([^'"]+)['"](?:\s*,[^)]*)?\)"""),
 
       // 6) context.plural() calls
-      RegExp(r"""context\s*\.\s*plural\s*\(\s*['"]([^'"]+)['"](?:\s*,[^)]*)?\)"""),
+      RegExp(
+        r"""context\s*\.\s*plural\s*\(\s*['"]([^'"]+)['"](?:\s*,[^)]*)?\)""",
+      ),
     ];
 
     final used = <String>{};
 
-    for (var file in srcDir.listSync(recursive: true).whereType<File>().where((f) => f.path.endsWith('.dart'))) {
+    for (var file
+        in srcDir
+            .listSync(recursive: true)
+            .whereType<File>()
+            .where((f) => f.path.endsWith('.dart'))) {
       try {
         final content = file.readAsStringSync();
         for (var pattern in keyPatterns) {
@@ -139,8 +153,12 @@ class AuditCommand {
     for (var lang in allTranslations.keys) {
       final keysInFile = allTranslations[lang]!;
       final missing = usedKeys.difference(keysInFile);
-      final missingWithVariables = missing.where((key) => key.contains('\$')).toList();
-      final missingWithoutVariables = missing.where((key) => !key.contains('\$')).toList();
+      final missingWithVariables = missing
+          .where((key) => key.contains('\$'))
+          .toList();
+      final missingWithoutVariables = missing
+          .where((key) => !key.contains('\$'))
+          .toList();
 
       stderr.writeln('\nLanguage: $lang');
       if (missingWithVariables.isEmpty && missingWithoutVariables.isEmpty) {
@@ -157,8 +175,12 @@ class AuditCommand {
       }
 
       if (missingWithVariables.isNotEmpty) {
-        stderr.writeln('  🟡 Missing with variables (${missingWithVariables.length}):');
-        stderr.writeln('    These keys may not be missing as they contain variables that cannot be verified.');
+        stderr.writeln(
+          '  🟡 Missing with variables (${missingWithVariables.length}):',
+        );
+        stderr.writeln(
+          '    These keys may not be missing as they contain variables that cannot be verified.',
+        );
         for (var key in missingWithVariables) {
           stderr.writeln('    – $key');
         }

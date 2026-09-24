@@ -24,12 +24,14 @@ Future<void> main() async {
     'Ensure that loading the translations will update its depending widgets',
     (WidgetTester tester) async {
       await tester.runAsync(() async {
-        await tester.pumpWidget(SimpleLocalization(
-          supportedLocales: const [Locale('en'), Locale('de')],
-          path: '../../i18n',
-          fallbackLocale: const Locale('en'),
-          child: const I18nObserver(child: MyApp()),
-        ));
+        await tester.pumpWidget(
+          SimpleLocalization(
+            supportedLocales: const [Locale('en'), Locale('de')],
+            path: '../../i18n',
+            fallbackLocale: const Locale('en'),
+            child: const I18nObserver(child: MyApp()),
+          ),
+        );
         await tester.pump();
       });
     },
@@ -69,7 +71,8 @@ class _I18nObserverState extends State<I18nObserver> {
       expect(
         'test'.tr(),
         'test_en',
-        reason: 'The translation should be loaded on the second call '
+        reason:
+            'The translation should be loaded on the second call '
             'of didChangeDependencies()',
       );
     }

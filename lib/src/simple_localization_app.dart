@@ -139,14 +139,16 @@ class SimpleLocalization extends StatefulWidget {
     this.ignorePluralRules = true,
     this.assetLoader = const RootBundleAssetLoader(
       fileLoader: RootBundleFileLoader(),
-      linkedFileResolver: JsonLinkedFileResolver(fileLoader: RootBundleFileLoader()),
+      linkedFileResolver: JsonLinkedFileResolver(
+        fileLoader: RootBundleFileLoader(),
+      ),
     ),
     this.extraAssetLoaders,
     this.saveLocale = true,
     this.errorWidget,
-  })  : assert(supportedLocales.isNotEmpty),
-        assert(path.isNotEmpty),
-        super(key: key) {
+  }) : assert(supportedLocales.isNotEmpty),
+       assert(path.isNotEmpty),
+       super(key: key) {
     SimpleLocalization.logger.debug('Start');
   }
 
@@ -155,12 +157,14 @@ class SimpleLocalization extends StatefulWidget {
   _SimpleLocalizationState createState() => _SimpleLocalizationState();
 
   // ignore: library_private_types_in_public_api
-  static _SimpleLocalizationProvider? of(BuildContext context) => _SimpleLocalizationProvider.of(context);
+  static _SimpleLocalizationProvider? of(BuildContext context) =>
+      _SimpleLocalizationProvider.of(context);
 
   /// ensureInitialized needs to be called in main
   /// so that savedLocale is loaded and used from the
   /// start.
-  static Future<void> ensureInitialized() async => await SimpleLocalizationController.initEasyLocation();
+  static Future<void> ensureInitialized() async =>
+      await SimpleLocalizationController.initEasyLocation();
 
   /// Customizable logger
   static EasyLogger logger = EasyLogger(name: '🌎 Simple Localization');
@@ -217,7 +221,8 @@ class _SimpleLocalizationState extends State<SimpleLocalization> {
       delegate: _SimpleLocalizationDelegate(
         localizationController: localizationController,
         supportedLocales: widget.supportedLocales,
-        useFallbackTranslationsForEmptyResources: widget.useFallbackTranslationsForEmptyResources,
+        useFallbackTranslationsForEmptyResources:
+            widget.useFallbackTranslationsForEmptyResources,
         ignorePluralRules: widget.ignorePluralRules,
       ),
     );
@@ -242,21 +247,25 @@ class _SimpleLocalizationProvider extends InheritedWidget {
   ///   ],
   /// ```
   List<LocalizationsDelegate> get delegates => [
-        delegate,
-        GlobalMaterialLocalizations.delegate,
-        GlobalWidgetsLocalizations.delegate,
-        GlobalCupertinoLocalizations.delegate,
-      ];
+    delegate,
+    GlobalMaterialLocalizations.delegate,
+    GlobalWidgetsLocalizations.delegate,
+    GlobalCupertinoLocalizations.delegate,
+  ];
 
   /// Get List of supported locales
   List<Locale> get supportedLocales => parent.supportedLocales;
 
   // _SimpleLocalizationDelegate get delegate => parent.delegate;
 
-  _SimpleLocalizationProvider(this.parent, this._localeState, {Key? key, required this.delegate})
-      : currentLocale = _localeState.locale,
-        _translationsLoaded = _localeState.translations != null,
-        super(key: key, child: parent.child) {
+  _SimpleLocalizationProvider(
+    this.parent,
+    this._localeState, {
+    Key? key,
+    required this.delegate,
+  }) : currentLocale = _localeState.locale,
+       _translationsLoaded = _localeState.translations != null,
+       super(key: key, child: parent.child) {
     SimpleLocalization.logger.debug('Init provider');
   }
 
@@ -291,7 +300,8 @@ class _SimpleLocalizationProvider extends InheritedWidget {
 
   @override
   bool updateShouldNotify(_SimpleLocalizationProvider oldWidget) {
-    return oldWidget.currentLocale != locale || oldWidget._translationsLoaded != _translationsLoaded;
+    return oldWidget.currentLocale != locale ||
+        oldWidget._translationsLoaded != _translationsLoaded;
   }
 
   static _SimpleLocalizationProvider? of(BuildContext context) =>
@@ -330,7 +340,8 @@ class _SimpleLocalizationDelegate extends LocalizationsDelegate<Localization> {
       value,
       translations: localizationController!.translations,
       fallbackTranslations: localizationController!.fallbackTranslations,
-      useFallbackTranslationsForEmptyResources: useFallbackTranslationsForEmptyResources,
+      useFallbackTranslationsForEmptyResources:
+          useFallbackTranslationsForEmptyResources,
       ignorePluralRules: ignorePluralRules,
     );
     return Future.value(Localization.instance);

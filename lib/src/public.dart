@@ -1,5 +1,6 @@
 import 'package:flutter/widgets.dart';
 import 'package:intl/intl.dart';
+
 import 'localization.dart';
 
 /// {@template tr}
@@ -40,17 +41,19 @@ String tr(
 }) {
   return context != null
       ? Localization.of(context)!
-          .tr(key, args: args, namedArgs: namedArgs, gender: gender)
-      : Localization.instance
-          .tr(key, args: args, namedArgs: namedArgs, gender: gender);
+            .tr(key, args: args, namedArgs: namedArgs, gender: gender)
+      : Localization.instance.tr(
+          key,
+          args: args,
+          namedArgs: namedArgs,
+          gender: gender,
+        );
 }
 
 bool trExists(String key, {BuildContext? context}) {
   return context != null
-      ? Localization.of(context)!
-	      .exists(key)
-      : Localization.instance
-	      .exists(key);
+      ? Localization.of(context)!.exists(key)
+      : Localization.instance.exists(key);
 }
 
 /// {@template plural}
@@ -113,8 +116,20 @@ String plural(
   NumberFormat? format,
 }) {
   return context != null
-      ? Localization.of(context)!.plural(key, value,
-          args: args, namedArgs: namedArgs, name: name, format: format)
-      : Localization.instance.plural(key, value,
-          args: args, namedArgs: namedArgs, name: name, format: format);
+      ? Localization.of(context)!.plural(
+          key,
+          value,
+          args: args,
+          namedArgs: namedArgs,
+          name: name,
+          format: format,
+        )
+      : Localization.instance.plural(
+          key,
+          value,
+          args: args,
+          namedArgs: namedArgs,
+          name: name,
+          format: format,
+        );
 }

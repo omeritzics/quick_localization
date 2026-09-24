@@ -14,31 +14,32 @@ import 'public.dart' as ez;
 /// ```
 extension TextTranslateExtension on Text {
   /// {@macro tr}
-  Text tr(
-          {List<String>? args,
-          BuildContext? context,
-          Map<String, String>? namedArgs,
-          String? gender}) =>
-      Text(
-          ez.tr(
-            data ?? '',
-            context: context,
-            args: args,
-            namedArgs: namedArgs,
-            gender: gender,
-          ),
-          key: key,
-          style: style,
-          strutStyle: strutStyle,
-          textAlign: textAlign,
-          textDirection: textDirection,
-          locale: locale,
-          softWrap: softWrap,
-          overflow: overflow,
-          textScaleFactor: textScaleFactor,
-          maxLines: maxLines,
-          semanticsLabel: semanticsLabel,
-          textWidthBasis: textWidthBasis);
+  Text tr({
+    List<String>? args,
+    BuildContext? context,
+    Map<String, String>? namedArgs,
+    String? gender,
+  }) => Text(
+    ez.tr(
+      data ?? '',
+      context: context,
+      args: args,
+      namedArgs: namedArgs,
+      gender: gender,
+    ),
+    key: key,
+    style: style,
+    strutStyle: strutStyle,
+    textAlign: textAlign,
+    textDirection: textDirection,
+    locale: locale,
+    softWrap: softWrap,
+    overflow: overflow,
+    textScaleFactor: textScaleFactor,
+    maxLines: maxLines,
+    semanticsLabel: semanticsLabel,
+    textWidthBasis: textWidthBasis,
+  );
 
   /// {@macro plural}
   Text plural(
@@ -48,29 +49,29 @@ extension TextTranslateExtension on Text {
     Map<String, String>? namedArgs,
     String? name,
     NumberFormat? format,
-  }) =>
-      Text(
-          ez.plural(
-            data ?? '',
-            value,
-            context: context,
-            args: args,
-            namedArgs: namedArgs,
-            name: name,
-            format: format,
-          ),
-          key: key,
-          style: style,
-          strutStyle: strutStyle,
-          textAlign: textAlign,
-          textDirection: textDirection,
-          locale: locale,
-          softWrap: softWrap,
-          overflow: overflow,
-          textScaleFactor: textScaleFactor,
-          maxLines: maxLines,
-          semanticsLabel: semanticsLabel,
-          textWidthBasis: textWidthBasis);
+  }) => Text(
+    ez.plural(
+      data ?? '',
+      value,
+      context: context,
+      args: args,
+      namedArgs: namedArgs,
+      name: name,
+      format: format,
+    ),
+    key: key,
+    style: style,
+    strutStyle: strutStyle,
+    textAlign: textAlign,
+    textDirection: textDirection,
+    locale: locale,
+    softWrap: softWrap,
+    overflow: overflow,
+    textScaleFactor: textScaleFactor,
+    maxLines: maxLines,
+    semanticsLabel: semanticsLabel,
+    textWidthBasis: textWidthBasis,
+  );
 }
 
 /// Strings extension method for access to [tr()] and [plural()]
@@ -86,9 +87,13 @@ extension StringTranslateExtension on String {
     Map<String, String>? namedArgs,
     String? gender,
     BuildContext? context,
-  }) =>
-      ez.tr(this,
-          context: context, args: args, namedArgs: namedArgs, gender: gender);
+  }) => ez.tr(
+    this,
+    context: context,
+    args: args,
+    namedArgs: namedArgs,
+    gender: gender,
+  );
 
   bool trExists({BuildContext? context}) => ez.trExists(this, context: context);
 
@@ -100,16 +105,15 @@ extension StringTranslateExtension on String {
     Map<String, String>? namedArgs,
     String? name,
     NumberFormat? format,
-  }) =>
-      ez.plural(
-        this,
-        value,
-        context: context,
-        args: args,
-        namedArgs: namedArgs,
-        name: name,
-        format: format,
-      );
+  }) => ez.plural(
+    this,
+    value,
+    context: context,
+    args: args,
+    namedArgs: namedArgs,
+    name: name,
+    format: format,
+  );
 }
 
 /// BuildContext extension method for access to [locale], [supportedLocales], [fallbackLocale], [delegates] and [deleteSaveLocale()]
@@ -135,8 +139,9 @@ extension BuildContextSimpleLocalizationExtension on BuildContext {
 
   /// Old Change app locale
   @Deprecated(
-      'This is the func used in the old version of SimpleLocalization. The modern func is `setLocale(val)` . '
-      'This feature was deprecated after v3.0.0')
+    'This is the func used in the old version of SimpleLocalization. The modern func is `setLocale(val)` . '
+    'This feature was deprecated after v3.0.0',
+  )
   set locale(Locale val) => SimpleLocalization.of(this)!.setLocale(val);
 
   /// Get List of supported locales.

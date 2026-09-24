@@ -5,23 +5,27 @@ import 'package:simple_localization/simple_localization.dart'
 
 class ImmutableJsonAssetLoader extends FileBasedAssetLoader {
   const ImmutableJsonAssetLoader()
-      : super(
-            linkedFileResolver: const JsonLinkedFileResolver(fileLoader: RootBundleFileLoader()),
-            fileLoader: const RootBundleFileLoader());
+    : super(
+        linkedFileResolver: const JsonLinkedFileResolver(
+          fileLoader: RootBundleFileLoader(),
+        ),
+        fileLoader: const RootBundleFileLoader(),
+      );
 
   @override
   Future<Map<String, dynamic>> load(String fullPath, Locale locale) {
-    return Future.value(const {
-      'test': 'test',
-    });
+    return Future.value(const {'test': 'test'});
   }
 }
 
 class JsonAssetLoader extends FileBasedAssetLoader {
   const JsonAssetLoader()
-      : super(
-            linkedFileResolver: const JsonLinkedFileResolver(fileLoader: RootBundleFileLoader()),
-            fileLoader: const RootBundleFileLoader());
+    : super(
+        linkedFileResolver: const JsonLinkedFileResolver(
+          fileLoader: RootBundleFileLoader(),
+        ),
+        fileLoader: const RootBundleFileLoader(),
+      );
 
   @override
   Future<Map<String, dynamic>> load(String fullPath, Locale locale) {
@@ -32,14 +36,17 @@ class JsonAssetLoader extends FileBasedAssetLoader {
       'test_replace_two': 'test replace {} {}',
       'test_replace_named': 'test named replace {arg1} {arg2}',
       'gender': {'male': 'Hi man ;)', 'female': 'Hello girl :)'},
-      'gender_and_replace': {'male': 'Hi {} man ;)', 'female': 'Hello {} girl :)'},
+      'gender_and_replace': {
+        'male': 'Hi {} man ;)',
+        'female': 'Hello {} girl :)',
+      },
       'day': {
         'zero': '{} days',
         'one': '{} day',
         'two': '{} days',
         'few': '{} few days',
         'many': '{} many days',
-        'other': '{} other days'
+        'other': '{} other days',
       },
       'hat': {
         'zero': 'no hats',
@@ -47,7 +54,7 @@ class JsonAssetLoader extends FileBasedAssetLoader {
         'two': 'two hats',
         'few': 'few hats',
         'many': 'many hats',
-        'other': 'other hats'
+        'other': 'other hats',
       },
       'hat_other': {'other': 'other hats'},
       'money': {
@@ -84,12 +91,15 @@ class JsonAssetLoader extends FileBasedAssetLoader {
           'duper': {
             'nested': 'nested.super.duper.nested',
             'nested_with_arg': 'nested.super.duper.nested_with_arg {}',
-            'nested_with_named_arg': 'nested.super.duper.nested_with_named_arg {arg}'
-          }
-        }
+            'nested_with_named_arg':
+                'nested.super.duper.nested_with_named_arg {arg}',
+          },
+        },
       },
       'path': fullPath,
-      'test_missing_fallback': (locale.languageCode == 'fb' ? 'fallback!' : null),
+      'test_missing_fallback': (locale.languageCode == 'fb'
+          ? 'fallback!'
+          : null),
       'test_empty_fallback': (locale.languageCode == 'fb' ? 'fallback!' : ''),
       'test_fallback_plurals': (locale.languageCode == 'fb'
           ? {
@@ -100,10 +110,7 @@ class JsonAssetLoader extends FileBasedAssetLoader {
               'many': 'fallback many',
               'other': 'fallback other',
             }
-          : {
-              'one': '{} second',
-              'other': '{} seconds',
-            }),
+          : {'one': '{} second', 'other': '{} seconds'}),
       'test_empty_fallback_plurals': (locale.languageCode == 'fb'
           ? {
               'zero': 'fallback zero',
@@ -137,19 +144,23 @@ class JsonAssetLoader extends FileBasedAssetLoader {
               'few': '',
               'many': '',
               'other': '',
-            })
+            }),
     });
   }
 }
 
 class ExternalAssetLoader extends FileBasedAssetLoader {
   ExternalAssetLoader()
-      : super(
-            linkedFileResolver: const JsonLinkedFileResolver(fileLoader: RootBundleFileLoader()),
-            fileLoader: const RootBundleFileLoader());
+    : super(
+        linkedFileResolver: const JsonLinkedFileResolver(
+          fileLoader: RootBundleFileLoader(),
+        ),
+        fileLoader: const RootBundleFileLoader(),
+      );
 
   @override
-  Future<Map<String, dynamic>> load(String fullPath, Locale locale) => Future.value(const {
+  Future<Map<String, dynamic>> load(String fullPath, Locale locale) =>
+      Future.value(const {
         'package_value_01': 'package_value_01',
         'package_value_02': 'package_value_02',
         'package_value_03': 'package_value_03',
@@ -158,16 +169,20 @@ class ExternalAssetLoader extends FileBasedAssetLoader {
 
 class NestedAssetLoader extends FileBasedAssetLoader {
   NestedAssetLoader()
-      : super(
-            linkedFileResolver: const JsonLinkedFileResolver(fileLoader: RootBundleFileLoader()),
-            fileLoader: const RootBundleFileLoader());
+    : super(
+        linkedFileResolver: const JsonLinkedFileResolver(
+          fileLoader: RootBundleFileLoader(),
+        ),
+        fileLoader: const RootBundleFileLoader(),
+      );
 
   @override
-  Future<Map<String, dynamic>> load(String fullPath, Locale locale) => Future.value({
+  Future<Map<String, dynamic>> load(String fullPath, Locale locale) =>
+      Future.value({
         'nested': {
           'super': {
-            'duper': {'nested': 'nested.super.duper.nested'}
-          }
+            'duper': {'nested': 'nested.super.duper.nested'},
+          },
         },
       });
 }

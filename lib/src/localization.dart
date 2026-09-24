@@ -9,14 +9,16 @@ class Localization {
   late Locale _locale;
 
   final RegExp _replaceArgRegex = RegExp('{}');
-  final RegExp _linkKeyMatcher =
-      RegExp(r'(?:@(?:\.[a-z]+)?:(?:[\w\-_|.]+|\([\w\-_|.]+\)))');
+  final RegExp _linkKeyMatcher = RegExp(
+    r'(?:@(?:\.[a-z]+)?:(?:[\w\-_|.]+|\([\w\-_|.]+\)))',
+  );
   final RegExp _linkKeyPrefixMatcher = RegExp(r'^@(?:\.([a-z]+))?:');
   final RegExp _bracketsMatcher = RegExp('[()]');
   final _modifiers = <String, String Function(String?)>{
     'upper': (String? val) => val!.toUpperCase(),
     'lower': (String? val) => val!.toLowerCase(),
-    'capitalize': (String? val) => '${val![0].toUpperCase()}${val.substring(1)}'
+    'capitalize': (String? val) =>
+        '${val![0].toUpperCase()}${val.substring(1)}',
   };
 
   bool _useFallbackTranslationsForEmptyResources = false;
@@ -80,8 +82,9 @@ class Localization {
       final formatterName = linkPrefixMatches.first[1];
 
       // Remove the leading @:, @.case: and the brackets
-      final linkPlaceholder =
-          link.replaceAll(linkPrefix, '').replaceAll(_bracketsMatcher, '');
+      final linkPlaceholder = link
+          .replaceAll(linkPrefix, '')
+          .replaceAll(_bracketsMatcher, '');
 
       var translated = _resolve(linkPlaceholder);
 
@@ -91,13 +94,15 @@ class Localization {
         } else {
           if (logging) {
             SimpleLocalization.logger.warning(
-                'Undefined modifier $formatterName, available modifiers: ${_modifiers.keys.toString()}');
+              'Undefined modifier $formatterName, available modifiers: ${_modifiers.keys.toString()}',
+            );
           }
         }
       }
 
-      result =
-          translated.isEmpty ? result : result.replaceAll(link, translated);
+      result = translated.isEmpty
+          ? result
+          : result.replaceAll(link, translated);
     }
 
     return result;
@@ -113,8 +118,10 @@ class Localization {
 
   String _replaceNamedArgs(String res, Map<String, String>? args) {
     if (args == null || args.isEmpty) return res;
-    args.forEach((String key, String value) =>
-        res = res.replaceAll(RegExp('{$key}'), value));
+    args.forEach(
+      (String key, String value) =>
+          res = res.replaceAll(RegExp('{$key}'), value),
+    );
     return res;
   }
 
@@ -150,7 +157,9 @@ class Localization {
     late String res;
 
     final pluralRule = _pluralRule(_locale.languageCode, value);
-    final pluralCase = pluralRule != null ? pluralRule() : _pluralCaseFallback(value);
+    final pluralCase = pluralRule != null
+        ? pluralRule()
+        : _pluralCaseFallback(value);
 
     switch (pluralCase) {
       case PluralCase.ZERO:
@@ -193,7 +202,11 @@ class Localization {
     if (subKey == 'other') return _resolve('$key.other');
 
     final tag = '$key.$subKey';
-    var resource = _resolve(tag, logging: false, fallback: _fallbackTranslations != null);
+    var resource = _resolve(
+      tag,
+      logging: false,
+      fallback: _fallbackTranslations != null,
+    );
     if (resource == tag) {
       resource = _resolve('$key.other');
     }
@@ -214,8 +227,9 @@ class Localization {
         if (resource == null ||
             (_useFallbackTranslationsForEmptyResources && resource.isEmpty)) {
           if (logging) {
-            SimpleLocalization.logger
-                .warning('Fallback localization key [$key] not found');
+            SimpleLocalization.logger.warning(
+              'Fallback localization key [$key] not found',
+            );
           }
           return key;
         }

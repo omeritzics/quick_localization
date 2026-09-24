@@ -48,7 +48,9 @@ class SimpleLocalizationController extends ChangeNotifier {
     }
     // If saved locale then get
     else if (saveLocale && _savedLocale != null) {
-      SimpleLocalization.logger('Saved locale loaded ${_savedLocale.toString()}');
+      SimpleLocalization.logger(
+        'Saved locale loaded ${_savedLocale.toString()}',
+      );
       _locale = selectLocaleFrom(
         supportedLocales,
         _savedLocale!,
@@ -83,8 +85,10 @@ class SimpleLocalizationController extends ChangeNotifier {
 
   //Get fallback Locale
   static Locale _getFallbackLocale(
-      List<Locale> supportedLocales, Locale? fallbackLocale,
-      {final Locale? deviceLocale}) {
+    List<Locale> supportedLocales,
+    Locale? fallbackLocale, {
+    Locale? deviceLocale,
+  }) {
     if (deviceLocale != null) {
       // a locale that matches the language code of the device locale is
       // preferred over the fallback locale
@@ -111,8 +115,9 @@ class SimpleLocalizationController extends ChangeNotifier {
       if (useFallbackTranslations && _fallbackLocale != null) {
         Map<String, dynamic>? baseLangData;
         if (_locale.countryCode != null && _locale.countryCode!.isNotEmpty) {
-          baseLangData =
-              await loadBaseLangTranslationData(Locale(locale.languageCode));
+          baseLangData = await loadBaseLangTranslationData(
+            Locale(locale.languageCode),
+          );
         }
         data = Map.from(await loadTranslationData(_fallbackLocale!));
         if (baseLangData != null) {
@@ -133,7 +138,8 @@ class SimpleLocalizationController extends ChangeNotifier {
   }
 
   Future<Map<String, dynamic>?> loadBaseLangTranslationData(
-      Locale locale) async {
+    Locale locale,
+  ) async {
     try {
       return await loadTranslationData(Locale(locale.languageCode));
     } on FlutterError catch (e) {
@@ -162,13 +168,17 @@ class SimpleLocalizationController extends ChangeNotifier {
     final result = <String, dynamic>{};
     final loaderFutures = <Future<Map<String, dynamic>?>>[];
 
-    // need scriptCode, it might be better to use ignoreCountryCode as the variable name of useOnlyLangCode 
-    final Locale desiredLocale =
-        useOnlyLangCode ? Locale.fromSubtags(languageCode: locale.languageCode, scriptCode: locale.scriptCode) : locale;
+    // need scriptCode, it might be better to use ignoreCountryCode as the variable name of useOnlyLangCode
+    final Locale desiredLocale = useOnlyLangCode
+        ? Locale.fromSubtags(
+            languageCode: locale.languageCode,
+            scriptCode: locale.scriptCode,
+          )
+        : locale;
 
     List<AssetLoader> loaders = [
       assetLoader,
-      if (extraAssetLoaders != null) ...extraAssetLoaders
+      if (extraAssetLoaders != null) ...extraAssetLoaders,
     ];
 
     for (final loader in loaders) {
@@ -223,9 +233,15 @@ class SimpleLocalizationController extends ChangeNotifier {
   Locale? get savedLocale => _savedLocale;
 
   Future<void> resetLocale() async {
-    final locale = selectLocaleFrom(_supportedLocales!, deviceLocale, fallbackLocale: _fallbackLocale);
+    final locale = selectLocaleFrom(
+      _supportedLocales!,
+      deviceLocale,
+      fallbackLocale: _fallbackLocale,
+    );
 
-    SimpleLocalization.logger('Reset locale to $locale while the platform locale is $_deviceLocale and the fallback locale is $_fallbackLocale');
+    SimpleLocalization.logger(
+      'Reset locale to $locale while the platform locale is $_deviceLocale and the fallback locale is $_fallbackLocale',
+    );
     await setLocale(locale);
   }
 }

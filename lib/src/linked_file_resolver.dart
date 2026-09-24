@@ -20,7 +20,12 @@ abstract class LinkedFileResolver {
     String? countryCode,
   });
 
-  String getLinkedLocalePath(String basePath, String filePath, String languageCode, {String? countryCode}) {
+  String getLinkedLocalePath(
+    String basePath,
+    String filePath,
+    String languageCode, {
+    String? countryCode,
+  }) {
     if (countryCode != null) {
       return '$basePath/$languageCode-$countryCode/$filePath';
     }
@@ -30,7 +35,8 @@ abstract class LinkedFileResolver {
 }
 
 class JsonLinkedFileResolver extends LinkedFileResolver {
-  const JsonLinkedFileResolver({required FileLoader fileLoader}) : super(fileLoader: fileLoader);
+  const JsonLinkedFileResolver({required FileLoader fileLoader})
+    : super(fileLoader: fileLoader);
 
   @override
   Future<Map<String, dynamic>> resolveLinkedFiles({
@@ -44,7 +50,9 @@ class JsonLinkedFileResolver extends LinkedFileResolver {
     visited ??= <String>{};
 
     if (depth > maxLinkedDepth) {
-      throw StateError('Maximum linked files depth ($maxLinkedDepth) exceeded for $languageCode at $basePath.');
+      throw StateError(
+        'Maximum linked files depth ($maxLinkedDepth) exceeded for $languageCode at $basePath.',
+      );
     }
 
     final Map<String, dynamic> fullJson = Map<String, dynamic>.from(baseJson);
@@ -55,15 +63,23 @@ class JsonLinkedFileResolver extends LinkedFileResolver {
 
       if (value is String && value.startsWith(':/')) {
         final rawPath = value.substring(2).trim();
-        final linkedAssetPath = getLinkedLocalePath(basePath, rawPath, languageCode, countryCode: countryCode);
+        final linkedAssetPath = getLinkedLocalePath(
+          basePath,
+          rawPath,
+          languageCode,
+          countryCode: countryCode,
+        );
 
         if (visited.contains(linkedAssetPath)) {
-          throw StateError('Cyclic linked files detected at "$linkedAssetPath" (key: "$key").');
+          throw StateError(
+            'Cyclic linked files detected at "$linkedAssetPath" (key: "$key").',
+          );
         }
 
         try {
           final linkedContent = await fileLoader.loadString(linkedAssetPath);
-          final Map<String, dynamic> linkedJson = json.decode(linkedContent) as Map<String, dynamic>;
+          final Map<String, dynamic> linkedJson =
+              json.decode(linkedContent) as Map<String, dynamic>;
 
           visited.add(linkedAssetPath);
 

@@ -8,10 +8,7 @@ class LanguageView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(
-          '',
-          style: TextStyle(color: Colors.black),
-        ),
+        title: Text('', style: TextStyle(color: Colors.black)),
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
         elevation: 0,
@@ -23,9 +20,7 @@ class LanguageView extends StatelessWidget {
           children: [
             Container(
               padding: EdgeInsets.only(top: 26),
-              margin: EdgeInsets.symmetric(
-                horizontal: 24,
-              ),
+              margin: EdgeInsets.symmetric(horizontal: 24),
               child: Text(
                 'Choose language',
                 style: TextStyle(
@@ -37,26 +32,29 @@ class LanguageView extends StatelessWidget {
               ),
             ),
             _SwitchListTileMenuItem(
-                title: 'عربي',
-                subtitle: 'عربي',
-                locale:
-                    context.supportedLocales[1] //BuildContext extension method
-                ),
+              title: 'عربي',
+              subtitle: 'عربي',
+              locale:
+                  context.supportedLocales[1], //BuildContext extension method
+            ),
             _Divider(),
             _SwitchListTileMenuItem(
-                title: 'English',
-                subtitle: 'English',
-                locale: context.supportedLocales[0]),
+              title: 'English',
+              subtitle: 'English',
+              locale: context.supportedLocales[0],
+            ),
             _Divider(),
             _SwitchListTileMenuItem(
-                title: 'German',
-                subtitle: 'German',
-                locale: context.supportedLocales[2]),
+              title: 'German',
+              subtitle: 'German',
+              locale: context.supportedLocales[2],
+            ),
             _Divider(),
             _SwitchListTileMenuItem(
-                title: 'Русский',
-                subtitle: 'Русский',
-                locale: context.supportedLocales[3]),
+              title: 'Русский',
+              subtitle: 'Русский',
+              locale: context.supportedLocales[3],
+            ),
             _Divider(),
           ],
         ),
@@ -71,12 +69,8 @@ class _Divider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(
-        horizontal: 24,
-      ),
-      child: Divider(
-        color: Colors.grey,
-      ),
+      margin: EdgeInsets.symmetric(horizontal: 24),
+      child: Divider(color: Colors.grey),
     );
   }
 }
@@ -100,23 +94,21 @@ class _SwitchListTileMenuItem extends StatelessWidget {
     return Container(
       margin: EdgeInsets.only(left: 10, right: 10, top: 5),
       decoration: BoxDecoration(
-        border:
-            isSelected(context) ? Border.all(color: Colors.blueAccent) : null,
+        border: isSelected(context)
+            ? Border.all(color: Colors.blueAccent)
+            : null,
       ),
       child: ListTile(
-          dense: true,
-          // isThreeLine: true,
-          title: Text(
-            title,
-          ),
-          subtitle: Text(
-            subtitle,
-          ),
-          onTap: () async {
-            log(locale.toString(), name: toString());
-            await context.setLocale(locale); //BuildContext extension method
-            Navigator.pop(context);
-          }),
+        dense: true,
+        // isThreeLine: true,
+        title: Text(title),
+        subtitle: Text(subtitle),
+        onTap: () async {
+          log(locale.toString(), name: toString());
+          await context.setLocale(locale); //BuildContext extension method
+          Navigator.pop(context);
+        },
+      ),
     );
   }
 }

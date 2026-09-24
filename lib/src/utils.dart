@@ -6,7 +6,8 @@ Locale localeFromString(String localeString) {
   final localeList = localeString.split('_');
   switch (localeList.length) {
     case 2:
-      return localeList.last.length == 4 // scriptCode length is 4
+      return localeList.last.length ==
+              4 // scriptCode length is 4
           ? Locale.fromSubtags(
               languageCode: localeList.first,
               scriptCode: localeList.last,
@@ -44,7 +45,8 @@ extension StringToLocaleHelper on String {
     final localeList = split(separator);
     switch (localeList.length) {
       case 2:
-        return localeList.last.length == 4 // scriptCode length is 4
+        return localeList.last.length ==
+                4 // scriptCode length is 4
             ? Locale.fromSubtags(
                 languageCode: localeList.first,
                 scriptCode: localeList.last,

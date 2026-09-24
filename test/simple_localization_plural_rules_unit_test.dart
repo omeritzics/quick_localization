@@ -10,17 +10,23 @@ import 'utils/test_asset_loaders.dart';
 void main() {
   // Setup
   var r = SimpleLocalizationController(
-      forceLocale: const Locale('fb'),
-      supportedLocales: [const Locale('en'), const Locale('ar'), const Locale('ru'), const Locale('fb')],
-      fallbackLocale: const Locale('fb'),
-      path: 'path',
-      useOnlyLangCode: true,
-      useFallbackTranslations: true,
-      onLoadError: (FlutterError e) {
-        log(e.toString());
-      },
-      saveLocale: false,
-      assetLoader: const JsonAssetLoader());
+    forceLocale: const Locale('fb'),
+    supportedLocales: [
+      const Locale('en'),
+      const Locale('ar'),
+      const Locale('ru'),
+      const Locale('fb'),
+    ],
+    fallbackLocale: const Locale('fb'),
+    path: 'path',
+    useOnlyLangCode: true,
+    useFallbackTranslations: true,
+    onLoadError: (FlutterError e) {
+      log(e.toString());
+    },
+    saveLocale: false,
+    assetLoader: const JsonAssetLoader(),
+  );
 
   setUpAll(() async {
     await r.loadTranslations();
@@ -190,23 +196,26 @@ void main() {
       expect(Localization.instance.plural('hat', 111), 'many hats');
       expect(Localization.instance.plural('hat', 103), 'few hats');
     });
-    test('Arabic all cases (with ignorePluralRules) | using `_pluralCaseFallback`', () async {
-      Localization.load(
-        const Locale('ar'),
-        translations: r.translations,
-        fallbackTranslations: r.fallbackTranslations,
-        ignorePluralRules: true,
-      );
+    test(
+      'Arabic all cases (with ignorePluralRules) | using `_pluralCaseFallback`',
+      () async {
+        Localization.load(
+          const Locale('ar'),
+          translations: r.translations,
+          fallbackTranslations: r.fallbackTranslations,
+          ignorePluralRules: true,
+        );
 
-      expect(Localization.instance.plural('hat', 0), 'no hats');
-      expect(Localization.instance.plural('hat', 1), 'one hat');
-      expect(Localization.instance.plural('hat', 2), 'two hats');
-      expect(Localization.instance.plural('hat', 3), 'other hats');
-      expect(Localization.instance.plural('hat', 4), 'other hats');
-      expect(Localization.instance.plural('hat', 11), 'other hats');
-      expect(Localization.instance.plural('hat', 101), 'other hats');
-      expect(Localization.instance.plural('hat', 111), 'other hats');
-      expect(Localization.instance.plural('hat', 103), 'other hats');
-    });
+        expect(Localization.instance.plural('hat', 0), 'no hats');
+        expect(Localization.instance.plural('hat', 1), 'one hat');
+        expect(Localization.instance.plural('hat', 2), 'two hats');
+        expect(Localization.instance.plural('hat', 3), 'other hats');
+        expect(Localization.instance.plural('hat', 4), 'other hats');
+        expect(Localization.instance.plural('hat', 11), 'other hats');
+        expect(Localization.instance.plural('hat', 101), 'other hats');
+        expect(Localization.instance.plural('hat', 111), 'other hats');
+        expect(Localization.instance.plural('hat', 103), 'other hats');
+      },
+    );
   });
 }

@@ -1,13 +1,18 @@
 import 'dart:io';
 
 import 'package:args/args.dart';
+
 import 'audit/audit_command.dart';
 
 void main(List<String> args) {
   final actual = args.isEmpty ? ['audit'] : args;
   var parser = ArgParser();
 
-  parser.addOption('translations-dir', abbr: 't', defaultsTo: 'assets/translations');
+  parser.addOption(
+    'translations-dir',
+    abbr: 't',
+    defaultsTo: 'assets/translations',
+  );
   parser.addOption('source-dir', abbr: 's', defaultsTo: 'lib');
 
   try {
@@ -16,7 +21,9 @@ void main(List<String> args) {
     final srcDir = argResults['source-dir'] as String;
 
     if (!Directory(transDir).existsSync()) {
-      stderr.writeln('Error: Translation directory "$transDir" does not exist.');
+      stderr.writeln(
+        'Error: Translation directory "$transDir" does not exist.',
+      );
       exit(1);
     }
 

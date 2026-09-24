@@ -3,24 +3,33 @@ import 'package:flutter/foundation.dart';
 import '../easy_logger.dart';
 
 /// Type for function printing/logging in [EasyLogger].
-typedef EasyLogPrinter = Function(Object object,
-    {String? name, LevelMessages? level, StackTrace? stackTrace});
+typedef EasyLogPrinter = Function(
+  Object object, {
+  String? name,
+  LevelMessages? level,
+  StackTrace? stackTrace,
+});
 
 /// Default debug-mode function printing.
-EasyLogPrinter easyLogDefaultPrinter = (Object object,
-    {String? name, StackTrace? stackTrace, LevelMessages? level}) {
-  final String levelName = level?.name != null ? '[${level?.name}] ' : '';
-  final String tag = name != null ? '[$name] ' : '';
+EasyLogPrinter easyLogDefaultPrinter =
+    (
+      Object object, {
+      String? name,
+      StackTrace? stackTrace,
+      LevelMessages? level,
+    }) {
+      final String levelName = level?.name != null ? '[${level?.name}] ' : '';
+      final String tag = name != null ? '[$name] ' : '';
 
-  if (kDebugMode) {
-    print(_getColoredString(level, '$tag$levelName${object.toString()}'));
+      if (kDebugMode) {
+        print(_getColoredString(level, '$tag$levelName${object.toString()}'));
 
-    if (stackTrace != null) {
-      print(_getColoredString(level, '__________________________________'));
-      print(_getColoredString(level, stackTrace.toString()));
-    }
-  }
-};
+        if (stackTrace != null) {
+          print(_getColoredString(level, '__________________________________'));
+          print(_getColoredString(level, stackTrace.toString()));
+        }
+      }
+    };
 
 String _getColoredString(LevelMessages? level, String string) {
   switch (level) {

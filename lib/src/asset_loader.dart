@@ -1,5 +1,6 @@
 import 'dart:convert';
 import 'dart:ui';
+
 import 'package:simple_localization/simple_localization.dart';
 import 'package:simple_localization/src/file_loaders/file_loader.dart';
 import 'package:simple_localization/src/file_loaders/io_file_loader.dart';
@@ -25,19 +26,26 @@ abstract class FileBasedAssetLoader extends AssetLoader {
   final FileLoader fileLoader;
   final LinkedFileResolver linkedFileResolver;
 
-  const FileBasedAssetLoader({required this.linkedFileResolver, required this.fileLoader});
+  const FileBasedAssetLoader({
+    required this.linkedFileResolver,
+    required this.fileLoader,
+  });
 }
 
 ///
 /// default used is RootBundleAssetLoader which uses flutter's assetloader
 ///
 class RootBundleAssetLoader extends FileBasedAssetLoader {
-  const RootBundleAssetLoader({required LinkedFileResolver linkedFileResolver, required FileLoader fileLoader})
-      : super(linkedFileResolver: linkedFileResolver, fileLoader: fileLoader);
+  const RootBundleAssetLoader({
+    required LinkedFileResolver linkedFileResolver,
+    required FileLoader fileLoader,
+  }) : super(linkedFileResolver: linkedFileResolver, fileLoader: fileLoader);
 
   factory RootBundleAssetLoader.fromRootBundle() {
     return const RootBundleAssetLoader(
-      linkedFileResolver: JsonLinkedFileResolver(fileLoader: RootBundleFileLoader()),
+      linkedFileResolver: JsonLinkedFileResolver(
+        fileLoader: RootBundleFileLoader(),
+      ),
       fileLoader: RootBundleFileLoader(),
     );
   }
@@ -58,7 +66,9 @@ class RootBundleAssetLoader extends FileBasedAssetLoader {
     var localePath = getLocalePath(path, locale);
     SimpleLocalization.logger.debug('Load asset from $path');
 
-    Map<String, dynamic> baseJson = json.decode(await fileLoader.loadString(localePath));
+    Map<String, dynamic> baseJson = json.decode(
+      await fileLoader.loadString(localePath),
+    );
     return await linkedFileResolver.resolveLinkedFiles(
       basePath: path,
       languageCode: locale.languageCode,

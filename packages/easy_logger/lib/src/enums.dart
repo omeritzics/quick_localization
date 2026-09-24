@@ -7,7 +7,7 @@ enum BuildMode {
   profile,
 
   /// Debug build mode
-  debug
+  debug,
 }
 
 /// Levels messages enum used in [EasyLogger].
