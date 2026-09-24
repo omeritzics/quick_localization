@@ -1,31 +1,31 @@
-import 'package:simple_localization/simple_localization.dart';
+import 'package:quick_localization/quick_localization.dart';
 import 'package:easy_logger/easy_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'simple_localization_context_test.dart';
+import 'quick_localization_context_test.dart';
 
 Future<void> main() async {
-  SimpleLocalization.logger.enableLevels = <LevelMessages>[
+  QuickLocalization.logger.enableLevels = <LevelMessages>[
     LevelMessages.error,
     LevelMessages.warning,
   ];
 
   SharedPreferences.setMockInitialValues({});
-  SimpleLocalization.logger.enableLevels = <LevelMessages>[
+  QuickLocalization.logger.enableLevels = <LevelMessages>[
     LevelMessages.error,
     LevelMessages.warning,
   ];
 
-  await SimpleLocalization.ensureInitialized();
+  await QuickLocalization.ensureInitialized();
 
   testWidgets(
     'Ensure that loading the translations will update its depending widgets',
     (WidgetTester tester) async {
       await tester.runAsync(() async {
         await tester.pumpWidget(
-          SimpleLocalization(
+          QuickLocalization(
             supportedLocales: const [Locale('en'), Locale('de')],
             path: '../../i18n',
             fallbackLocale: const Locale('en'),
@@ -56,7 +56,7 @@ class _I18nObserverState extends State<I18nObserver> {
   @override
   void didChangeDependencies() {
     // use the dependOnInheritedWidgetOfExactType pattern
-    SimpleLocalization.of(context);
+    QuickLocalization.of(context);
 
     super.didChangeDependencies();
 
@@ -71,8 +71,7 @@ class _I18nObserverState extends State<I18nObserver> {
       expect(
         'test'.tr(),
         'test_en',
-        reason:
-            'The translation should be loaded on the second call '
+        reason: 'The translation should be loaded on the second call '
             'of didChangeDependencies()',
       );
     }

@@ -1,11 +1,11 @@
-name: simple_localization
-description: Easy and Fast internationalizing and localization your Flutter Apps, this package simplify the internationalizing process .
+name: quick_localization
+description: Quick and simple internationalizing and localization your Flutter Apps, this package simplify the internationalizing process .
 # author: AISSAT abdelwahab <mr.aissat@gmail.com>
-homepage: https://github.com/aissat/simple_localization
-issue_tracker: https://github.com/aissat/simple_localization/issues
+homepage: https://github.com/omeritzics/quick_localization
+issue_tracker: https://github.com/omeritzics/quick_localization/issues
 # publish_to: none
 
-version: 3.0.9
+version: 1.0.0
 
 environment:
   sdk: '>=2.12.0 <4.0.0'

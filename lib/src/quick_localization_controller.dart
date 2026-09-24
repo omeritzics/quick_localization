@@ -1,4 +1,4 @@
-import 'package:simple_localization/simple_localization.dart';
+import 'package:quick_localization/quick_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl_standalone.dart'
     if (dart.library.html) 'package:intl/intl_browser.dart';
@@ -6,7 +6,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 
 import 'translations.dart';
 
-class SimpleLocalizationController extends ChangeNotifier {
+class QuickLocalizationController extends ChangeNotifier {
   static Locale? _savedLocale;
   static late Locale _deviceLocale;
 
@@ -25,7 +25,7 @@ class SimpleLocalizationController extends ChangeNotifier {
   Translations? get translations => _translations;
   Translations? get fallbackTranslations => _fallbackTranslations;
 
-  SimpleLocalizationController({
+  QuickLocalizationController({
     required List<Locale> supportedLocales,
     required this.useFallbackTranslations,
     required this.saveLocale,
@@ -44,11 +44,11 @@ class SimpleLocalizationController extends ChangeNotifier {
       _locale = forceLocale;
     } else if (_savedLocale == null && startLocale != null) {
       _locale = _getFallbackLocale(supportedLocales, startLocale);
-      SimpleLocalization.logger('Start locale loaded ${_locale.toString()}');
+      QuickLocalization.logger('Start locale loaded ${_locale.toString()}');
     }
     // If saved locale then get
     else if (saveLocale && _savedLocale != null) {
-      SimpleLocalization.logger(
+      QuickLocalization.logger(
         'Saved locale loaded ${_savedLocale.toString()}',
       );
       _locale = selectLocaleFrom(
@@ -144,7 +144,7 @@ class SimpleLocalizationController extends ChangeNotifier {
       return await loadTranslationData(Locale(locale.languageCode));
     } on FlutterError catch (e) {
       // Disregard asset not found FlutterError when attempting to load base language fallback
-      SimpleLocalization.logger.warning(e.message);
+      QuickLocalization.logger.warning(e.message);
     }
     return null;
   }
@@ -202,7 +202,7 @@ class SimpleLocalizationController extends ChangeNotifier {
     _locale = l;
     await loadTranslations();
     notifyListeners();
-    SimpleLocalization.logger('Locale $locale changed');
+    QuickLocalization.logger('Locale $locale changed');
     await _saveLocale(_locale);
   }
 
@@ -210,7 +210,7 @@ class SimpleLocalizationController extends ChangeNotifier {
     if (!saveLocale) return;
     final preferences = await SharedPreferences.getInstance();
     await preferences.setString('locale', locale.toString());
-    SimpleLocalization.logger('Locale $locale saved');
+    QuickLocalization.logger('Locale $locale saved');
   }
 
   static Future<void> initEasyLocation() async {
@@ -219,14 +219,14 @@ class SimpleLocalizationController extends ChangeNotifier {
     _savedLocale = strLocale?.toLocale();
     final foundPlatformLocale = await findSystemLocale();
     _deviceLocale = foundPlatformLocale.toLocale();
-    SimpleLocalization.logger.debug('Localization initialized');
+    QuickLocalization.logger.debug('Localization initialized');
   }
 
   Future<void> deleteSaveLocale() async {
     _savedLocale = null;
     final preferences = await SharedPreferences.getInstance();
     await preferences.remove('locale');
-    SimpleLocalization.logger('Saved locale deleted');
+    QuickLocalization.logger('Saved locale deleted');
   }
 
   Locale get deviceLocale => _deviceLocale;
@@ -239,7 +239,7 @@ class SimpleLocalizationController extends ChangeNotifier {
       fallbackLocale: _fallbackLocale,
     );
 
-    SimpleLocalization.logger(
+    QuickLocalization.logger(
       'Reset locale to $locale while the platform locale is $_deviceLocale and the fallback locale is $_fallbackLocale',
     );
     await setLocale(locale);

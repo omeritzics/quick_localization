@@ -1,6 +1,6 @@
 import 'dart:convert';
 
-import 'package:simple_localization/src/file_loaders/file_loader.dart';
+import 'package:quick_localization/src/file_loaders/file_loader.dart';
 
 /// Resolves linked translation files by loading referenced files and merging them
 /// into the base JSON structure. Handles the ':/filename.json' syntax used in linked files.
@@ -36,7 +36,7 @@ abstract class LinkedFileResolver {
 
 class JsonLinkedFileResolver extends LinkedFileResolver {
   const JsonLinkedFileResolver({required FileLoader fileLoader})
-    : super(fileLoader: fileLoader);
+      : super(fileLoader: fileLoader);
 
   @override
   Future<Map<String, dynamic>> resolveLinkedFiles({

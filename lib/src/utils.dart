@@ -1,4 +1,4 @@
-part of 'simple_localization_app.dart';
+part of 'quick_localization_app.dart';
 
 /// Convert string locale [localeString] to [Locale]
 @Deprecated('Deprecated on Easy Localization 3.0')
@@ -6,8 +6,7 @@ Locale localeFromString(String localeString) {
   final localeList = localeString.split('_');
   switch (localeList.length) {
     case 2:
-      return localeList.last.length ==
-              4 // scriptCode length is 4
+      return localeList.last.length == 4 // scriptCode length is 4
           ? Locale.fromSubtags(
               languageCode: localeList.first,
               scriptCode: localeList.last,
@@ -45,8 +44,7 @@ extension StringToLocaleHelper on String {
     final localeList = split(separator);
     switch (localeList.length) {
       case 2:
-        return localeList.last.length ==
-                4 // scriptCode length is 4
+        return localeList.last.length == 4 // scriptCode length is 4
             ? Locale.fromSubtags(
                 languageCode: localeList.first,
                 scriptCode: localeList.last,

@@ -1,7 +1,7 @@
 import 'dart:developer';
 
-import 'package:simple_localization/src/simple_localization_controller.dart';
-import 'package:simple_localization/src/localization.dart';
+import 'package:quick_localization/src/quick_localization_controller.dart';
+import 'package:quick_localization/src/localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 
@@ -9,7 +9,7 @@ import 'utils/test_asset_loaders.dart';
 
 void main() {
   group('language-specific-plurals', () {
-    var r = SimpleLocalizationController(
+    var r = QuickLocalizationController(
       forceLocale: const Locale('fb'),
       supportedLocales: [
         const Locale('en'),

@@ -1,19 +1,19 @@
 import 'dart:developer';
 
-import 'package:simple_localization/simple_localization.dart';
-import 'package:simple_localization/src/simple_localization_controller.dart';
-import 'package:simple_localization/src/localization.dart';
+import 'package:quick_localization/quick_localization.dart';
+import 'package:quick_localization/src/quick_localization_controller.dart';
+import 'package:quick_localization/src/localization.dart';
 import 'package:easy_logger/easy_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-import 'simple_localization_utils_test.dart';
+import 'quick_localization_utils_test.dart';
 import 'utils/test_asset_loaders.dart';
 
 void main() {
   group('localization', () {
-    var r1 = SimpleLocalizationController(
+    var r1 = QuickLocalizationController(
       forceLocale: const Locale('en'),
       path: 'path/en.json',
       supportedLocales: const [Locale('en')],
@@ -25,7 +25,7 @@ void main() {
       },
       assetLoader: const JsonAssetLoader(),
     );
-    var r2 = SimpleLocalizationController(
+    var r2 = QuickLocalizationController(
       forceLocale: const Locale('en', 'us'),
       supportedLocales: const [Locale('en', 'us')],
       path: 'path/en-us.json',
@@ -38,7 +38,7 @@ void main() {
       assetLoader: const JsonAssetLoader(),
     );
     setUpAll(() async {
-      SimpleLocalization.logger.enableLevels = <LevelMessages>[
+      QuickLocalization.logger.enableLevels = <LevelMessages>[
         LevelMessages.error,
         LevelMessages.warning,
       ];
@@ -79,7 +79,7 @@ void main() {
     test(
       'merge fallbackLocale with locale without country code succeeds',
       () async {
-        await SimpleLocalizationController(
+        await QuickLocalizationController(
           forceLocale: const Locale('es', 'AR'),
           supportedLocales: const [
             Locale('en'),
@@ -152,8 +152,8 @@ void main() {
 
     test('controller loads saved locale', () async {
       SharedPreferences.setMockInitialValues({'locale': 'en'});
-      await SimpleLocalization.ensureInitialized();
-      final controller = SimpleLocalizationController(
+      await QuickLocalization.ensureInitialized();
+      final controller = QuickLocalizationController(
         supportedLocales: const [Locale('en'), Locale('fb')],
         fallbackLocale: const Locale('fb'),
         path: 'path',
@@ -175,8 +175,8 @@ void main() {
       'controller loads fallback if saved locale is not supported',
       () async {
         SharedPreferences.setMockInitialValues({'locale': 'de'});
-        await SimpleLocalization.ensureInitialized();
-        final controller = SimpleLocalizationController(
+        await QuickLocalization.ensureInitialized();
+        final controller = QuickLocalizationController(
           supportedLocales: const [Locale('en'), Locale('fb')],
           fallbackLocale: const Locale('fb'),
           path: 'path',
@@ -247,11 +247,11 @@ void main() {
         );
 
         expect(
-          SimpleLocalizationController.selectLocaleFrom([en, zh], zhHansCN),
+          QuickLocalizationController.selectLocaleFrom([en, zh], zhHansCN),
           zh,
         );
         expect(
-          SimpleLocalizationController.selectLocaleFrom([
+          QuickLocalizationController.selectLocaleFrom([
             zhHant,
             zhHans,
           ], zhHansCN),
@@ -266,7 +266,7 @@ void main() {
         const supportedLocale2 = Locale('zh', 'CN');
 
         expect(
-          SimpleLocalizationController.selectLocaleFrom(
+          QuickLocalizationController.selectLocaleFrom(
             [supportedLocale1, supportedLocale2],
             userDeviceLocale,
             fallbackLocale: supportedLocale2,
@@ -282,7 +282,7 @@ void main() {
         const supportedLocale2 = userDeviceLocale;
 
         expect(
-          SimpleLocalizationController.selectLocaleFrom(
+          QuickLocalizationController.selectLocaleFrom(
             [supportedLocale1, supportedLocale2],
             userDeviceLocale,
             fallbackLocale: supportedLocale2,
@@ -293,7 +293,7 @@ void main() {
     });
 
     group('tr', () {
-      var r = SimpleLocalizationController(
+      var r = QuickLocalizationController(
         forceLocale: const Locale('en'),
         supportedLocales: const [Locale('en'), Locale('fb')],
         fallbackLocale: const Locale('fb'),
@@ -470,7 +470,9 @@ void main() {
         );
       });
 
-      test('should raise exception if provided arguments length is different from the count of {} in the resource', () {
+      test(
+          'should raise exception if provided arguments length is different from the count of {} in the resource',
+          () {
         // @TODO
       });
 
@@ -526,7 +528,7 @@ void main() {
     });
 
     group('tr useFallbackTranslationsForEmptyResources', () {
-      var r = SimpleLocalizationController(
+      var r = QuickLocalizationController(
         forceLocale: const Locale('en'),
         supportedLocales: const [Locale('en'), Locale('fb')],
         fallbackLocale: const Locale('fb'),
@@ -591,7 +593,7 @@ void main() {
     });
 
     group('plural', () {
-      var r = SimpleLocalizationController(
+      var r = QuickLocalizationController(
         forceLocale: const Locale('en'),
         supportedLocales: const [Locale('en'), Locale('fb')],
         fallbackLocale: const Locale('fb'),
@@ -744,7 +746,7 @@ void main() {
     });
 
     group('plural useFallbackTranslationsForEmptyResources', () {
-      var r = SimpleLocalizationController(
+      var r = QuickLocalizationController(
         forceLocale: const Locale('en'),
         supportedLocales: const [Locale('en'), Locale('fb')],
         fallbackLocale: const Locale('fb'),

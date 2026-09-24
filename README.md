@@ -1,29 +1,29 @@
-<p align="center"><img src="https://raw.githubusercontent.com/omeritzics/simple_localization/develop/logo/logo.svg?sanitize=true" width="600"/></p>
+<p align="center"><img src="https://raw.githubusercontent.com/omeritzics/quick_localization/develop/logo/logo.svg?sanitize=true" width="600"/></p>
 
 <h1 align="center"> 
-Simple and Fast internationalization for your Flutter Apps
+Quick and simple internationalization for your Flutter Apps
 </h1>
 
-[![Pub Version](https://img.shields.io/pub/v/simple_localization?style=flat-square&logo=dart)](https://pub.dev/packages/simple_localization)
-[![likes](https://badges.bar/simple_localization/likes)](https://pub.dev/packages/simple_localization/score)
-[![likes](https://badges.bar/simple_localization/popularity)](https://pub.dev/packages/simple_localization/score)
-[![likes](https://badges.bar/simple_localization/pub%20points)](https://pub.dev/packages/simple_localization/score)
-![Code Climate issues](https://img.shields.io/github/issues/omeritzics/simple_localization?style=flat-square)
-![GitHub closed issues](https://img.shields.io/github/issues-closed/omeritzics/simple_localization?style=flat-square)
-![GitHub contributors](https://img.shields.io/github/contributors/omeritzics/simple_localization?style=flat-square)
-![GitHub repo size](https://img.shields.io/github/repo-size/omeritzics/simple_localization?style=flat-square)
-![GitHub forks](https://img.shields.io/github/forks/omeritzics/simple_localization?style=flat-square)
-![GitHub stars](https://img.shields.io/github/stars/omeritzics/simple_localization?style=flat-square)
-![Coveralls github branch](https://img.shields.io/coveralls/github/omeritzics/simple_localization/dev?style=flat-square)
-![GitHub Workflow Status](https://img.shields.io/github/workflow/status/omeritzics/simple_localization/Flutter%20Tester?longCache=true&style=flat-square&logo=github)
-![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/omeritzics/simple_localization?style=flat-square)
-![GitHub license](https://img.shields.io/github/license/omeritzics/simple_localization?style=flat-square)
+[![Pub Version](https://img.shields.io/pub/v/quick_localization?style=flat-square&logo=dart)](https://pub.dev/packages/quick_localization)
+[![likes](https://badges.bar/quick_localization/likes)](https://pub.dev/packages/quick_localization/score)
+[![likes](https://badges.bar/quick_localization/popularity)](https://pub.dev/packages/quick_localization/score)
+[![likes](https://badges.bar/quick_localization/pub%20points)](https://pub.dev/packages/quick_localization/score)
+![Code Climate issues](https://img.shields.io/github/issues/omeritzics/quick_localization?style=flat-square)
+![GitHub closed issues](https://img.shields.io/github/issues-closed/omeritzics/quick_localization?style=flat-square)
+![GitHub contributors](https://img.shields.io/github/contributors/omeritzics/quick_localization?style=flat-square)
+![GitHub repo size](https://img.shields.io/github/repo-size/omeritzics/quick_localization?style=flat-square)
+![GitHub forks](https://img.shields.io/github/forks/omeritzics/quick_localization?style=flat-square)
+![GitHub stars](https://img.shields.io/github/stars/omeritzics/quick_localization?style=flat-square)
+![Coveralls github branch](https://img.shields.io/coveralls/github/omeritzics/quick_localization/dev?style=flat-square)
+![GitHub Workflow Status](https://img.shields.io/github/workflow/status/omeritzics/quick_localization/Flutter%20Tester?longCache=true&style=flat-square&logo=github)
+![CodeFactor Grade](https://img.shields.io/codefactor/grade/github/omeritzics/quick_localization?style=flat-square)
+![GitHub license](https://img.shields.io/github/license/omeritzics/quick_localization?style=flat-square)
 ![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg?style=flat-square)
 
-## Why simple_localization?
+## Why quick_localization?
 
-- 🚀 Simple translations for many languages
-- 🔌 Load translations as JSON, CSV, Yaml, Xml using [Simple Localization Loader](https://github.com/omeritzics/simple_localization_loader)
+- 🚀 Quick translations for many languages
+- 🔌 Load translations as JSON, CSV, Yaml, Xml using [Quick Localization Loader](https://github.com/omeritzics/quick_localization_loader)
 - 💾 React and persist to locale changes
 - ⚡ Supports plural, gender, nesting, RTL locales and more
 - ↩️ Fallback locale keys redirection
@@ -42,7 +42,7 @@ Add to your `pubspec.yaml`:
 
 ```yaml
 dependencies:
-  simple_localization: <last_version>
+  quick_localization: <last_version>
 ```
 
 Create folder and add translation files like this
@@ -77,7 +77,7 @@ flutter:
 
 You can use JSON,CSV,HTTP,XML,Yaml files, etc.
 
-See [Simple Localization Loader](https://github.com/omeritzics/simple_localization_loader) for more info.
+See [Quick Localization Loader](https://github.com/omeritzics/quick_localization_loader) for more info.
 
 ### ⚠️ Note on **iOS**
 
@@ -96,19 +96,19 @@ Example:
 
 ### ⚙️ Configuration app
 
-Add SimpleLocalization widget like in example
+Add QuickLocalization widget like in example
 
 ```dart
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
-import 'package:simple_localization/simple_localization.dart';
+import 'package:quick_localization/quick_localization.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SimpleLocalization.ensureInitialized();
+  await QuickLocalization.ensureInitialized();
   
   runApp(
-    SimpleLocalization(
+    QuickLocalization(
       supportedLocales: [Locale('en', 'US'), Locale('de', 'DE')],
       path: 'assets/translations', // <-- change the path of the translation files 
       fallbackLocale: Locale('en', 'US'),
@@ -130,9 +130,9 @@ class MyApp extends StatelessWidget {
 }
 ```
 
-[**Full example**](https://github.com/omeritzics/simple_localization/blob/master/example/lib/main.dart)
+[**Full example**](https://github.com/omeritzics/quick_localization/blob/master/example/lib/main.dart)
 
-### 📜 Simple localization widget properties
+### 📜 Quick Localization widget properties
 
 | Properties              | Required | Default                   | Description                                                                                                                                                                   |
 | ----------------------- | -------- | ------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -140,8 +140,8 @@ class MyApp extends StatelessWidget {
 | child                   | true     |                           | Place for your main page widget.                                                                                                                                              |
 | supportedLocales        | true     |                           | List of supported locales.                                                                                                                                                    |
 | path                    | true     |                           | Path to your folder with localization files.                                                                                                                                  |
-| assetLoader             | false    | `RootBundleAssetLoader()` | Class loader for localization files. You can use custom loaders from [Simple Localization Loader](https://github.com/omeritzics/simple_localization_loader) or create your own class. |
-| extraAssetLoaders       | false    | null                      | A List of asset loaders, in case of needing assets being loaded from a different module or package. (e.g. adding a package that uses [Simple Localization Loader]).             |
+| assetLoader             | false    | `RootBundleAssetLoader()` | Class loader for localization files. You can use custom loaders from [Quick Localization Loader](https://github.com/omeritzics/quick_localization_loader) or create your own class. |
+| extraAssetLoaders       | false    | null                      | A List of asset loaders, in case of needing assets being loaded from a different module or package. (e.g. adding a package that uses [Quick Localization Loader]).             |
 | fallbackLocale          | false    |                           | Returns the locale when the locale is not in the list `supportedLocales`.                                                                                                     |
 | startLocale             | false    |                           | Overrides device locale.                                                                                                                                                      |
 | saveLocale              | false    | `true`                    | Save locale in device storage.                                                                                                                                                |
@@ -154,15 +154,15 @@ class MyApp extends StatelessWidget {
 
 ### 🔥 Initialize library
 
-Call `SimpleLocalization.ensureInitialized()` in your main before runApp.
+Call `QuickLocalization.ensureInitialized()` in your main before runApp.
 
 ```dart
 void main() async{
   // ...
-  // Needs to be called so that we can await for SimpleLocalization.ensureInitialized();
+  // Needs to be called so that we can await for QuickLocalization.ensureInitialized();
   WidgetsFlutterBinding.ensureInitialized();
 
-  await SimpleLocalization.ensureInitialized();
+  await QuickLocalization.ensureInitialized();
   // ...
   runApp(....)
   // ...
@@ -171,11 +171,11 @@ void main() async{
 
 ### 🔥 Change or get locale
 
-Simple localization uses extension methods [BuildContext] for access to locale.
+Quick Localization uses extension methods [BuildContext] for access to locale.
 
 It's the easiest way change locale or get parameters 😉.
 
-ℹ️ No breaking changes, you can use old the static method `SimpleLocalization.of(context)`
+ℹ️ No breaking changes, you can use old the static method `QuickLocalization.of(context)`
 
 Example:
 
@@ -220,7 +220,7 @@ Example:
 ``` json
 {
    "msg":"{} are written in the {} language",
-   "msg_named":"Simple localization is written in the {lang} language",
+   "msg_named":"Quick Localization is written in the {lang} language",
    "msg_mixed":"{} are written in the {lang} language",
    "gender":{
       "male":"Hi man ;) {}",
@@ -232,13 +232,13 @@ Example:
 
 ```dart
 // args
-Text('msg').tr(args: ['Simple localization', 'Dart']),
+Text('msg').tr(args: ['Quick Localization', 'Dart']),
 
 // namedArgs
 Text('msg_named').tr(namedArgs: {'lang': 'Dart'}),
 
 // args and namedArgs
-Text('msg_mixed').tr(args: ['Simple localization'], namedArgs: {'lang': 'Dart'}),
+Text('msg_mixed').tr(args: ['Quick Localization'], namedArgs: {'lang': 'Dart'}),
 
 // gender
 Text('gender').tr(gender: _gender ? "female" : "male"),
@@ -320,14 +320,14 @@ var money = plural('money_named_args', 10.23, namedArgs: {'name': 'Jane'}, name:
 ### ⚙️ Configuring Plural Rules with `ignorePluralRules`
 
 In some languages, pluralization is simple and only involves using zero, one, two, and other forms, without needing to handle the `few` or `many` categories.  
-By default, `simple_localization` ignores the `few` and `many` plural forms and uses just the zero, one, two, and other forms.
+By default, `quick_localization` ignores the `few` and `many` plural forms and uses just the zero, one, two, and other forms.
 
-If you want to enable the handling of the `few` and `many` plural categories for specific languages, you can configure the `ignorePluralRules` flag to `false` in the `SimpleLocalization` initialization.
+If you want to enable the handling of the `few` and `many` plural categories for specific languages, you can configure the `ignorePluralRules` flag to `false` in the `QuickLocalization` initialization.
 
 Here’s how to configure it:
 
 ```dart
-SimpleLocalization(
+QuickLocalization(
   ignorePluralRules: false, // Set this line to false to enable 'few' and 'many' plural categories
   supportedLocales: [Locale('en', 'US'), Locale('de', 'DE')],
   path: 'assets/translations',
@@ -421,7 +421,7 @@ To link an external file, set the key’s value to a path prefixed with `:/`, re
 }
 ```
 
-At runtime, Simple Localization will load:
+At runtime, Quick Localization will load:
 ```
 assets
 └── translations
@@ -475,9 +475,9 @@ RaisedButton(
 )
 ```
 
-### 🔥 Get Simple localization widget properties
+### 🔥 Get Quick Localization widget properties
 
-At any time, you can take the main [properties](#-easy-localization-widget-properties) of the Simple localization widget using [BuildContext].
+At any time, you can take the main [properties](#-easy-localization-widget-properties) of the Quick Localization widget using [BuildContext].
 
 Are supported: supportedLocales, fallbackLocale, localizationDelegates.
 
@@ -491,7 +491,7 @@ print(context.fallbackLocale); // output: en_US
 
 ## 💻 Code generation
 
-Code generation supports only json files, for more information run in terminal `flutter pub run simple_localization:generate -h`
+Code generation supports only json files, for more information run in terminal `flutter pub run quick_localization:generate -h`
 
 ### Command line arguments
 
@@ -510,14 +510,14 @@ Code generation supports only json files, for more information run in terminal `
 Steps:
 
 1. Open your terminal in the folder's path containing your project
-2. Run in terminal `flutter pub run simple_localization:generate`
+2. Run in terminal `flutter pub run quick_localization:generate`
 3. Change asset loader and past import.
 
   ```dart
   import 'generated/codegen_loader.g.dart';
   ...
   void main(){
-    runApp(SimpleLocalization(
+    runApp(QuickLocalization(
       child: MyApp(),
       supportedLocales: [Locale('en', 'US'), Locale('ar', 'DZ')],
       path: 'resources/langs',
@@ -535,7 +535,7 @@ If you want to add localization support from other modules and packages you can 
 
 ```dart
   void main(){
-    runApp(SimpleLocalization(
+    runApp(QuickLocalization(
       child: MyApp(),
       supportedLocales: [Locale('en', 'US'), Locale('ar', 'DZ')],
       path: 'resources/langs',
@@ -554,7 +554,7 @@ If you have many localization keys and are confused, key generation will help yo
 
 Steps:
 1. Open your terminal in the folder's path containing your project 
-2. Run in terminal `flutter pub run simple_localization:generate -f keys -o locale_keys.g.dart`
+2. Run in terminal `flutter pub run quick_localization:generate -f keys -o locale_keys.g.dart`
 3. Past import.
 
 ```dart
@@ -575,7 +575,7 @@ Text(LocaleKeys.title).tr(); //Widget
 If you prefer to not generate keys you can see an audit of your translation keys to see the one present in your app code but not in your translations file by running the audit command.
 
 ```
-flutter pub run simple_localization:audit
+flutter pub run quick_localization:audit
 ```
 
 If you are not using the default translations folder path (assets/translations) or the lib folder for your code you can specify your custom paths : 
@@ -587,7 +587,7 @@ If you are not using the default translations folder path (assets/translations) 
 
 ## 🖨️ Logger
 
-[Simple Localization] logger based on [Simple Logger]
+[Quick Localization] logger based on [Simple Logger]
 
 You can customize logger for you project
 
@@ -596,7 +596,7 @@ You can customize logger for you project
 Lost translations keys logged like warning messages. Change [Simple Logger] level for display only errors and warnings.
 
 ```dart
-SimpleLocalization.logger.enableLevels = [LevelMessages.error, LevelMessages.warning];
+QuickLocalization.logger.enableLevels = [LevelMessages.error, LevelMessages.warning];
 ```
 
 ### Logger off
@@ -604,7 +604,7 @@ SimpleLocalization.logger.enableLevels = [LevelMessages.error, LevelMessages.war
 For disable logger, change Build Modes in [Simple Logger] to empty List;
 
 ```dart
-SimpleLocalization.logger.enableBuildModes = [];
+QuickLocalization.logger.enableBuildModes = [];
 ```
 
 ### Catching logger messages
@@ -623,10 +623,10 @@ SimpleLogPrinter customLogPrinter = (
 };
 
 /// override printer to custom
-SimpleLocalization.logger.printer = customLogPrinter;
+QuickLocalization.logger.printer = customLogPrinter;
 ```
 
-Read more about [Simple Logger](https://github.com/omeritzics/simple_localization/blob/master/packages/easy_logger/README.md)
+Read more about [Simple Logger](https://github.com/omeritzics/quick_localization/blob/master/packages/easy_logger/README.md)
 
 ## ➕ Extensions helpers
 
@@ -646,12 +646,12 @@ Locale('en', 'US').toStringWithSeparator(separator: '|') // en|US
 
 
 <p align="center">
-    <a href="https://gitpod.io/#https://github.com/omeritzics/simple_localization" target="_blank">
+    <a href="https://gitpod.io/#https://github.com/omeritzics/quick_localization" target="_blank">
         <img src="https://gitpod.io/button/open-in-gitpod.svg" width=200 />
     </a>
 </p>
 
 ### Contributors thanks
 
-![contributors](https://contributors-img.firebaseapp.com/image?repo=omeritzics/simple_localization)
-<a href="https://github.com/omeritzics/simple_localization/graphs/contributors"></a>
+![contributors](https://contributors-img.firebaseapp.com/image?repo=omeritzics/quick_localization)
+<a href="https://github.com/omeritzics/quick_localization/graphs/contributors"></a>

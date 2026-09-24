@@ -1,10 +1,10 @@
-// DO NOT EDIT. This is code generated via package:simple_localization/generate.dart
+// DO NOT EDIT. This is code generated via package:quick_localization/generate.dart
 
 // ignore_for_file: prefer_single_quotes, avoid_renaming_method_parameters, constant_identifier_names
 
 import 'dart:ui';
 
-import 'package:simple_localization/simple_localization.dart' show AssetLoader;
+import 'package:quick_localization/quick_localization.dart' show AssetLoader;
 
 class CodegenLoader extends AssetLoader {
   const CodegenLoader();

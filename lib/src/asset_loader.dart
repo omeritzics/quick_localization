@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:ui';
 
-import 'package:simple_localization/simple_localization.dart';
-import 'package:simple_localization/src/file_loaders/file_loader.dart';
-import 'package:simple_localization/src/file_loaders/io_file_loader.dart';
+import 'package:quick_localization/quick_localization.dart';
+import 'package:quick_localization/src/file_loaders/file_loader.dart';
+import 'package:quick_localization/src/file_loaders/io_file_loader.dart';
 
 /// abstract class used to building your Custom AssetLoader
 /// Example:
@@ -64,7 +64,7 @@ class RootBundleAssetLoader extends FileBasedAssetLoader {
   @override
   Future<Map<String, dynamic>?> load(String path, Locale locale) async {
     var localePath = getLocalePath(path, locale);
-    SimpleLocalization.logger.debug('Load asset from $path');
+    QuickLocalization.logger.debug('Load asset from $path');
 
     Map<String, dynamic> baseJson = json.decode(
       await fileLoader.loadString(localePath),

@@ -1,16 +1,18 @@
 import 'dart:developer';
 
 import 'package:flutter/material.dart';
-import 'package:simple_localization/simple_localization.dart';
+import 'package:quick_localization/quick_localization.dart';
 
 class LanguageView extends StatelessWidget {
+  const LanguageView({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('', style: TextStyle(color: Colors.black)),
+        title: const Text('', style: const TextStyle(color: Colors.black)),
         backgroundColor: Colors.white,
-        iconTheme: IconThemeData(color: Colors.black),
+        iconTheme: const IconThemeData(color: Colors.black),
         elevation: 0,
       ),
       body: Container(
@@ -19,11 +21,11 @@ class LanguageView extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Container(
-              padding: EdgeInsets.only(top: 26),
-              margin: EdgeInsets.symmetric(horizontal: 24),
-              child: Text(
+              padding: const EdgeInsets.only(top: 26),
+              margin: const EdgeInsets.symmetric(horizontal: 24),
+              child: const Text(
                 'Choose language',
-                style: TextStyle(
+                style: const TextStyle(
                   color: Colors.blue,
                   fontFamily: 'Montserrat',
                   fontWeight: FontWeight.w700,
@@ -37,25 +39,25 @@ class LanguageView extends StatelessWidget {
               locale:
                   context.supportedLocales[1], //BuildContext extension method
             ),
-            _Divider(),
+            const _Divider(),
             _SwitchListTileMenuItem(
               title: 'English',
               subtitle: 'English',
               locale: context.supportedLocales[0],
             ),
-            _Divider(),
+            const _Divider(),
             _SwitchListTileMenuItem(
               title: 'German',
               subtitle: 'German',
               locale: context.supportedLocales[2],
             ),
-            _Divider(),
+            const _Divider(),
             _SwitchListTileMenuItem(
               title: 'Русский',
               subtitle: 'Русский',
               locale: context.supportedLocales[3],
             ),
-            _Divider(),
+            const _Divider(),
           ],
         ),
       ),
@@ -69,8 +71,8 @@ class _Divider extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.symmetric(horizontal: 24),
-      child: Divider(color: Colors.grey),
+      margin: const EdgeInsets.symmetric(horizontal: 24),
+      child: const Divider(color: Colors.grey),
     );
   }
 }
@@ -92,11 +94,10 @@ class _SwitchListTileMenuItem extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      margin: EdgeInsets.only(left: 10, right: 10, top: 5),
+      margin: const EdgeInsets.only(left: 10, right: 10, top: 5),
       decoration: BoxDecoration(
-        border: isSelected(context)
-            ? Border.all(color: Colors.blueAccent)
-            : null,
+        border:
+            isSelected(context) ? Border.all(color: Colors.blueAccent) : null,
       ),
       child: ListTile(
         dense: true,

@@ -1,5 +1,5 @@
-import 'package:simple_localization/simple_localization.dart';
-//import 'package:simple_localization_loader/simple_localization_loader.dart'; // import custom loaders
+import 'package:quick_localization/quick_localization.dart';
+//import 'package:quick_localization_loader/quick_localization_loader.dart'; // import custom loaders
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
@@ -8,15 +8,15 @@ import 'lang_view.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
-  await SimpleLocalization.ensureInitialized();
+  await QuickLocalization.ensureInitialized();
 
   runApp(
-    SimpleLocalization(
+    QuickLocalization(
       supportedLocales: [
-        Locale('en', 'US'),
-        Locale('ar', 'DZ'),
-        Locale('de', 'DE'),
-        Locale('ru', 'RU'),
+        const Locale('en', 'US'),
+        const Locale('ar', 'DZ'),
+        const Locale('de', 'DE'),
+        const Locale('ru', 'RU'),
       ],
       path: 'resources/langs',
       child: MyApp(),
@@ -27,7 +27,7 @@ void main() async {
       // ignorePluralRules: false,
 
       // optional assetLoader default used is RootBundleAssetLoader which uses flutter's assetloader
-      // install simple_localization_loader for enable custom loaders
+      // install quick_localization_loader for enable custom loaders
       // assetLoader: RootBundleAssetLoader()
       // assetLoader: HttpAssetLoader()
       // assetLoader: FileAssetLoader()
@@ -42,6 +42,8 @@ void main() async {
 }
 
 class MyApp extends StatelessWidget {
+  const MyApp({Key? key}) : super(key: key);
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -55,7 +57,7 @@ class MyApp extends StatelessWidget {
 }
 
 class MyHomePage extends StatefulWidget {
-  MyHomePage({Key? key, required this.title}) : super(key: key);
+  const MyHomePage({Key? key, required this.title}) : super(key: key);
 
   final String title;
 
@@ -83,7 +85,7 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(LocaleKeys.title).tr(),
+        title: const Text(LocaleKeys.title).tr(),
         actions: <Widget>[
           TextButton(
             onPressed: () {
@@ -95,7 +97,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 ),
               );
             },
-            child: Icon(Icons.language, color: Colors.white),
+            child: const Icon(Icons.language, color: Colors.white),
           ),
         ],
       ),
@@ -103,7 +105,7 @@ class _MyHomePageState extends State<MyHomePage> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            Spacer(flex: 1),
+            const Spacer(flex: 1),
             Text(
               LocaleKeys.gender_with_arg,
               style: TextStyle(
@@ -123,23 +125,23 @@ class _MyHomePageState extends State<MyHomePage> {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: <Widget>[
-                FaIcon(FontAwesomeIcons.male),
+                const FaIcon(FontAwesomeIcons.male),
                 Switch(value: _gender, onChanged: switchGender),
-                FaIcon(FontAwesomeIcons.female),
+                const FaIcon(FontAwesomeIcons.female),
               ],
             ),
-            Spacer(flex: 1),
-            Text(LocaleKeys.msg).tr(args: ['aissat', 'Flutter']),
-            Text(LocaleKeys.msg_named)
+            const Spacer(flex: 1),
+            const Text(LocaleKeys.msg).tr(args: ['aissat', 'Flutter']),
+            const Text(LocaleKeys.msg_named)
                 .tr(namedArgs: {'lang': 'Dart'}, args: ['Easy localization']),
-            Text(LocaleKeys.clicked).plural(counter),
+            const Text(LocaleKeys.clicked).plural(counter),
             TextButton(
               onPressed: () {
                 incrementCounter();
               },
-              child: Text(LocaleKeys.clickMe).tr(),
+              child: const Text(LocaleKeys.clickMe).tr(),
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Text(
               plural(
                 LocaleKeys.amount,
@@ -155,20 +157,20 @@ class _MyHomePageState extends State<MyHomePage> {
                 fontWeight: FontWeight.bold,
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
             ElevatedButton(
               onPressed: () {
                 context.resetLocale();
               },
-              child: Text(LocaleKeys.reset_locale).tr(),
+              child: const Text(LocaleKeys.reset_locale).tr(),
             ),
-            Spacer(flex: 1),
+            const Spacer(flex: 1),
           ],
         ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: incrementCounter,
-        child: Text('+1'),
+        child: const Text('+1'),
       ),
     );
   }

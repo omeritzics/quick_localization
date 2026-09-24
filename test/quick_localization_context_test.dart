@@ -1,6 +1,6 @@
 import 'dart:io';
 
-import 'package:simple_localization/simple_localization.dart';
+import 'package:quick_localization/quick_localization.dart';
 import 'package:easy_logger/easy_logger.dart';
 import 'package:flutter/material.dart';
 
@@ -41,26 +41,26 @@ class MyWidget extends StatelessWidget {
 }
 
 void main() async {
-  SimpleLocalization.logger.enableLevels = <LevelMessages>[
+  QuickLocalization.logger.enableLevels = <LevelMessages>[
     LevelMessages.error,
     LevelMessages.warning,
   ];
 
   SharedPreferences.setMockInitialValues({});
-  SimpleLocalization.logger.enableLevels = <LevelMessages>[
+  QuickLocalization.logger.enableLevels = <LevelMessages>[
     LevelMessages.error,
     LevelMessages.warning,
   ];
 
-  await SimpleLocalization.ensureInitialized();
+  await QuickLocalization.ensureInitialized();
 
   group('BuildContext', () {
     testWidgets(
-      '[SimpleLocalization] _getFallbackLocale() fallbackLocale!=null test',
+      '[QuickLocalization] _getFallbackLocale() fallbackLocale!=null test',
       (WidgetTester tester) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
-            SimpleLocalization(
+            QuickLocalization(
               path: '../../i18n',
               saveLocale: false,
               useOnlyLangCode: true,
@@ -81,11 +81,11 @@ void main() async {
     );
 
     testWidgets(
-      '[SimpleLocalization] _getFallbackLocale()  fallbackLocale==null test',
+      '[QuickLocalization] _getFallbackLocale()  fallbackLocale==null test',
       (WidgetTester tester) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
-            SimpleLocalization(
+            QuickLocalization(
               path: '../../i18n',
               saveLocale: false,
               useOnlyLangCode: true,
@@ -110,14 +110,14 @@ void main() async {
     group('SharedPreferences deleteSaveLocale()', () {
       setUpAll(() async {
         SharedPreferences.setMockInitialValues({'locale': 'ar_DZ'});
-        await SimpleLocalization.ensureInitialized();
+        await QuickLocalization.ensureInitialized();
       });
-      testWidgets('[SimpleLocalization] deleteSaveLocale  test', (
+      testWidgets('[QuickLocalization] deleteSaveLocale  test', (
         WidgetTester tester,
       ) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
-            SimpleLocalization(
+            QuickLocalization(
               path: '../../i18n',
               // fallbackLocale:Locale('en') ,
               supportedLocales: const [
@@ -136,12 +136,12 @@ void main() async {
         });
       });
 
-      testWidgets('[SimpleLocalization] after deleteSaveLocale test', (
+      testWidgets('[QuickLocalization] after deleteSaveLocale test', (
         WidgetTester tester,
       ) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
-            SimpleLocalization(
+            QuickLocalization(
               path: '../../i18n',
               // fallbackLocale:Locale('en') ,
               supportedLocales: const [
@@ -159,12 +159,12 @@ void main() async {
         });
       });
 
-      testWidgets('[SimpleLocalization] device locale  test', (
+      testWidgets('[QuickLocalization] device locale  test', (
         WidgetTester tester,
       ) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
-            SimpleLocalization(
+            QuickLocalization(
               path: '../../i18n',
               supportedLocales: const [
                 Locale('en', 'US'),
@@ -181,12 +181,12 @@ void main() async {
         });
       });
 
-      testWidgets('[SimpleLocalization] reset device locale  test', (
+      testWidgets('[QuickLocalization] reset device locale  test', (
         WidgetTester tester,
       ) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
-            SimpleLocalization(
+            QuickLocalization(
               path: '../../i18n',
               supportedLocales: const [
                 Locale('en', 'US'),
@@ -208,12 +208,12 @@ void main() async {
         });
       });
 
-      testWidgets('[SimpleLocalization] device locale  test', (
+      testWidgets('[QuickLocalization] device locale  test', (
         WidgetTester tester,
       ) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
-            SimpleLocalization(
+            QuickLocalization(
               path: '../../i18n',
               supportedLocales: const [
                 Locale('en', 'US'),
@@ -230,12 +230,12 @@ void main() async {
         });
       });
 
-      testWidgets('[SimpleLocalization] reset device locale  test', (
+      testWidgets('[QuickLocalization] reset device locale  test', (
         WidgetTester tester,
       ) async {
         await tester.runAsync(() async {
           await tester.pumpWidget(
-            SimpleLocalization(
+            QuickLocalization(
               path: '../../i18n',
               supportedLocales: const [
                 Locale('en', 'US'),

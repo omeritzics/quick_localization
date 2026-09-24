@@ -1,9 +1,9 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:simple_localization/src/linked_file_resolver.dart';
+import 'package:quick_localization/src/linked_file_resolver.dart';
 import 'package:path/path.dart';
-import 'package:simple_localization/src/file_loaders/io_file_loader.dart';
+import 'package:quick_localization/src/file_loaders/io_file_loader.dart';
 
 class AuditCommand {
   Future<void> run({required String transDir, required String srcDir}) async {
@@ -120,11 +120,10 @@ class AuditCommand {
 
     final used = <String>{};
 
-    for (var file
-        in srcDir
-            .listSync(recursive: true)
-            .whereType<File>()
-            .where((f) => f.path.endsWith('.dart'))) {
+    for (var file in srcDir
+        .listSync(recursive: true)
+        .whereType<File>()
+        .where((f) => f.path.endsWith('.dart'))) {
       try {
         final content = file.readAsStringSync();
         for (var pattern in keyPatterns) {
@@ -153,12 +152,10 @@ class AuditCommand {
     for (var lang in allTranslations.keys) {
       final keysInFile = allTranslations[lang]!;
       final missing = usedKeys.difference(keysInFile);
-      final missingWithVariables = missing
-          .where((key) => key.contains('\$'))
-          .toList();
-      final missingWithoutVariables = missing
-          .where((key) => !key.contains('\$'))
-          .toList();
+      final missingWithVariables =
+          missing.where((key) => key.contains('\$')).toList();
+      final missingWithoutVariables =
+          missing.where((key) => !key.contains('\$')).toList();
 
       stderr.writeln('\nLanguage: $lang');
       if (missingWithVariables.isEmpty && missingWithoutVariables.isEmpty) {

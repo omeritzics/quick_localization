@@ -1,23 +1,23 @@
-import 'package:simple_localization/simple_localization.dart';
+import 'package:quick_localization/quick_localization.dart';
 import 'package:easy_logger/easy_logger.dart';
 import 'package:flutter_test/flutter_test.dart';
 
-import 'simple_localization_utils_test.dart';
+import 'quick_localization_utils_test.dart';
 
 void main() async {
   group('Logger testing', () {
     test('Logger enable', () {
-      expect(SimpleLocalization.logger, equals(SimpleLocalization.logger));
-      expect(SimpleLocalization.logger, isNotNull);
+      expect(QuickLocalization.logger, equals(QuickLocalization.logger));
+      expect(QuickLocalization.logger, isNotNull);
     });
 
     test(
       'Logger print',
       overridePrint(() {
         printLog = [];
-        SimpleLocalization.logger('Same print');
+        QuickLocalization.logger('Same print');
         expect(printLog.first, contains('Same print'));
-        expect(printLog.first, contains(SimpleLocalization.logger.name));
+        expect(printLog.first, contains(QuickLocalization.logger.name));
       }),
     );
 
@@ -25,7 +25,7 @@ void main() async {
       'Logger print info',
       overridePrint(() {
         printLog = [];
-        SimpleLocalization.logger('print info', level: LevelMessages.info);
+        QuickLocalization.logger('print info', level: LevelMessages.info);
         expect(printLog.first, contains('print info'));
         expect(printLog.first, contains('[INFO]'));
       }),
@@ -35,7 +35,7 @@ void main() async {
       'Logger print debug',
       overridePrint(() {
         printLog = [];
-        SimpleLocalization.logger('print debug', level: LevelMessages.debug);
+        QuickLocalization.logger('print debug', level: LevelMessages.debug);
         expect(printLog.first, contains('print debug'));
         expect(printLog.first, contains('[DEBUG]'));
       }),
@@ -45,7 +45,7 @@ void main() async {
       'Logger print warning',
       overridePrint(() {
         printLog = [];
-        SimpleLocalization.logger(
+        QuickLocalization.logger(
           'print warning',
           level: LevelMessages.warning,
         );
@@ -58,7 +58,7 @@ void main() async {
       'Logger print error',
       overridePrint(() {
         printLog = [];
-        SimpleLocalization.logger('print error', level: LevelMessages.error);
+        QuickLocalization.logger('print error', level: LevelMessages.error);
         expect(printLog.first, contains('print error'));
         expect(printLog.first, contains('[ERROR]'));
       }),
@@ -72,7 +72,7 @@ void main() async {
         StackTrace testStackTrace;
         testStackTrace = StackTrace.fromString('test stack');
 
-        SimpleLocalization.logger(
+        QuickLocalization.logger(
           'print error',
           level: LevelMessages.error,
           stackTrace: testStackTrace,

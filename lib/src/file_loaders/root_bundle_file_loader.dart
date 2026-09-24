@@ -1,4 +1,4 @@
-import 'package:simple_localization/src/file_loaders/file_loader.dart';
+import 'package:quick_localization/src/file_loaders/file_loader.dart';
 import 'package:flutter/services.dart';
 
 /// File loader implementation for Flutter applications using rootBundle

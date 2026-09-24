@@ -192,7 +192,7 @@ Future _writeKeys(
   bool? skipUnnecessaryKeys,
 ) async {
   var file = '''
-// DO NOT EDIT. This is code generated via package:simple_localization/generate.dart
+// DO NOT EDIT. This is code generated via package:quick_localization/generate.dart
 
 // ignore_for_file: constant_identifier_names
 
@@ -228,8 +228,7 @@ String _resolve(
     var ignoreKey = false;
     if (translations[key] is Map) {
       // If key does not contain keys for plural(), gender() etc. and option is enabled -> ignore it
-      ignoreKey =
-          !containsPreservedKeywords(
+      ignoreKey = !containsPreservedKeywords(
             translations[key] as Map<String, dynamic>,
           ) &&
           canIgnoreKeys;
@@ -249,10 +248,10 @@ String _resolve(
     if (!_preservedKeywords.contains(key)) {
       accKey != null && !ignoreKey
           ? fileContent +=
-                '  static const ${accKey.replaceAll('.', '_')}_$key = \'$accKey.$key\';\n'
+              '  static const ${accKey.replaceAll('.', '_')}_$key = \'$accKey.$key\';\n'
           : !ignoreKey
-          ? fileContent += '  static const $key = \'$key\';\n'
-          : null;
+              ? fileContent += '  static const $key = \'$key\';\n'
+              : null;
     }
   }
 
@@ -264,13 +263,13 @@ Future _writeJson(
   List<FileSystemEntity> files,
 ) async {
   var gFile = '''
-// DO NOT EDIT. This is code generated via package:simple_localization/generate.dart
+// DO NOT EDIT. This is code generated via package:quick_localization/generate.dart
 
 // ignore_for_file: prefer_single_quotes, avoid_renaming_method_parameters, constant_identifier_names
 
 import 'dart:ui';
 
-import 'package:simple_localization/simple_localization.dart' show AssetLoader;
+import 'package:quick_localization/quick_localization.dart' show AssetLoader;
 
 class CodegenLoader extends AssetLoader{
   const CodegenLoader();
@@ -285,10 +284,8 @@ class CodegenLoader extends AssetLoader{
   final listLocales = [];
 
   for (var file in files) {
-    final localeName = path
-        .basename(file.path)
-        .replaceFirst('.json', '')
-        .replaceAll('-', '_');
+    final localeName =
+        path.basename(file.path).replaceFirst('.json', '').replaceAll('-', '_');
     listLocales.add('"$localeName": _$localeName');
     final fileData = File(file.path);
 

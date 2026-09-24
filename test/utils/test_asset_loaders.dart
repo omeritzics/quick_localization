@@ -1,16 +1,16 @@
 import 'dart:ui';
 
-import 'package:simple_localization/simple_localization.dart'
+import 'package:quick_localization/quick_localization.dart'
     show FileBasedAssetLoader, JsonLinkedFileResolver, RootBundleFileLoader;
 
 class ImmutableJsonAssetLoader extends FileBasedAssetLoader {
   const ImmutableJsonAssetLoader()
-    : super(
-        linkedFileResolver: const JsonLinkedFileResolver(
-          fileLoader: RootBundleFileLoader(),
-        ),
-        fileLoader: const RootBundleFileLoader(),
-      );
+      : super(
+          linkedFileResolver: const JsonLinkedFileResolver(
+            fileLoader: RootBundleFileLoader(),
+          ),
+          fileLoader: const RootBundleFileLoader(),
+        );
 
   @override
   Future<Map<String, dynamic>> load(String fullPath, Locale locale) {
@@ -20,12 +20,12 @@ class ImmutableJsonAssetLoader extends FileBasedAssetLoader {
 
 class JsonAssetLoader extends FileBasedAssetLoader {
   const JsonAssetLoader()
-    : super(
-        linkedFileResolver: const JsonLinkedFileResolver(
-          fileLoader: RootBundleFileLoader(),
-        ),
-        fileLoader: const RootBundleFileLoader(),
-      );
+      : super(
+          linkedFileResolver: const JsonLinkedFileResolver(
+            fileLoader: RootBundleFileLoader(),
+          ),
+          fileLoader: const RootBundleFileLoader(),
+        );
 
   @override
   Future<Map<String, dynamic>> load(String fullPath, Locale locale) {
@@ -97,9 +97,8 @@ class JsonAssetLoader extends FileBasedAssetLoader {
         },
       },
       'path': fullPath,
-      'test_missing_fallback': (locale.languageCode == 'fb'
-          ? 'fallback!'
-          : null),
+      'test_missing_fallback':
+          (locale.languageCode == 'fb' ? 'fallback!' : null),
       'test_empty_fallback': (locale.languageCode == 'fb' ? 'fallback!' : ''),
       'test_fallback_plurals': (locale.languageCode == 'fb'
           ? {
@@ -151,12 +150,12 @@ class JsonAssetLoader extends FileBasedAssetLoader {
 
 class ExternalAssetLoader extends FileBasedAssetLoader {
   ExternalAssetLoader()
-    : super(
-        linkedFileResolver: const JsonLinkedFileResolver(
-          fileLoader: RootBundleFileLoader(),
-        ),
-        fileLoader: const RootBundleFileLoader(),
-      );
+      : super(
+          linkedFileResolver: const JsonLinkedFileResolver(
+            fileLoader: RootBundleFileLoader(),
+          ),
+          fileLoader: const RootBundleFileLoader(),
+        );
 
   @override
   Future<Map<String, dynamic>> load(String fullPath, Locale locale) =>
@@ -169,12 +168,12 @@ class ExternalAssetLoader extends FileBasedAssetLoader {
 
 class NestedAssetLoader extends FileBasedAssetLoader {
   NestedAssetLoader()
-    : super(
-        linkedFileResolver: const JsonLinkedFileResolver(
-          fileLoader: RootBundleFileLoader(),
-        ),
-        fileLoader: const RootBundleFileLoader(),
-      );
+      : super(
+          linkedFileResolver: const JsonLinkedFileResolver(
+            fileLoader: RootBundleFileLoader(),
+          ),
+          fileLoader: const RootBundleFileLoader(),
+        );
 
   @override
   Future<Map<String, dynamic>> load(String fullPath, Locale locale) =>

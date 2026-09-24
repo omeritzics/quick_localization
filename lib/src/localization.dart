@@ -1,4 +1,4 @@
-import 'package:simple_localization/simple_localization.dart';
+import 'package:quick_localization/quick_localization.dart';
 import 'package:flutter/widgets.dart';
 
 import 'plural_rules.dart';
@@ -82,9 +82,8 @@ class Localization {
       final formatterName = linkPrefixMatches.first[1];
 
       // Remove the leading @:, @.case: and the brackets
-      final linkPlaceholder = link
-          .replaceAll(linkPrefix, '')
-          .replaceAll(_bracketsMatcher, '');
+      final linkPlaceholder =
+          link.replaceAll(linkPrefix, '').replaceAll(_bracketsMatcher, '');
 
       var translated = _resolve(linkPlaceholder);
 
@@ -93,16 +92,15 @@ class Localization {
           translated = _modifiers[formatterName]!(translated);
         } else {
           if (logging) {
-            SimpleLocalization.logger.warning(
+            QuickLocalization.logger.warning(
               'Undefined modifier $formatterName, available modifiers: ${_modifiers.keys.toString()}',
             );
           }
         }
       }
 
-      result = translated.isEmpty
-          ? result
-          : result.replaceAll(link, translated);
+      result =
+          translated.isEmpty ? result : result.replaceAll(link, translated);
     }
 
     return result;
@@ -157,9 +155,8 @@ class Localization {
     late String res;
 
     final pluralRule = _pluralRule(_locale.languageCode, value);
-    final pluralCase = pluralRule != null
-        ? pluralRule()
-        : _pluralCaseFallback(value);
+    final pluralCase =
+        pluralRule != null ? pluralRule() : _pluralCaseFallback(value);
 
     switch (pluralCase) {
       case PluralCase.ZERO:
@@ -218,7 +215,7 @@ class Localization {
     if (resource == null ||
         (_useFallbackTranslationsForEmptyResources && resource.isEmpty)) {
       if (logging) {
-        SimpleLocalization.logger.warning('Localization key [$key] not found');
+        QuickLocalization.logger.warning('Localization key [$key] not found');
       }
       if (_fallbackTranslations == null || !fallback) {
         return key;
@@ -227,7 +224,7 @@ class Localization {
         if (resource == null ||
             (_useFallbackTranslationsForEmptyResources && resource.isEmpty)) {
           if (logging) {
-            SimpleLocalization.logger.warning(
+            QuickLocalization.logger.warning(
               'Fallback localization key [$key] not found',
             );
           }

@@ -1,19 +1,19 @@
 import 'dart:async';
 
-import 'package:simple_localization/simple_localization.dart';
+import 'package:quick_localization/quick_localization.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_test/flutter_test.dart';
 
 var printLog = [];
 dynamic overridePrint(Function() testFn) => () {
-  var spec = ZoneSpecification(
-    print: (_, __, ___, String msg) {
-      // Add to log instead of printing to stdout
-      printLog.add(msg);
-    },
-  );
-  return Zone.current.fork(specification: spec).run(testFn);
-};
+      var spec = ZoneSpecification(
+        print: (_, __, ___, String msg) {
+          // Add to log instead of printing to stdout
+          printLog.add(msg);
+        },
+      );
+      return Zone.current.fork(specification: spec).run(testFn);
+    };
 
 void main() {
   group('Utils', () {

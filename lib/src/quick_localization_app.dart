@@ -1,7 +1,7 @@
 import 'dart:async';
 
-import 'package:simple_localization/simple_localization.dart';
-import 'package:simple_localization/src/simple_localization_controller.dart';
+import 'package:quick_localization/quick_localization.dart';
+import 'package:quick_localization/src/quick_localization_controller.dart';
 import 'package:easy_logger/easy_logger.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -10,11 +10,11 @@ import 'localization.dart';
 
 part 'utils.dart';
 
-///  SimpleLocalization
+///  QuickLocalization
 ///  example:
 ///  ```
 ///  void main(){
-///    runApp(SimpleLocalization(
+///    runApp(QuickLocalization(
 ///      child: MyApp(),
 ///      supportedLocales: [Locale('en', 'US'), Locale('ar', 'DZ')],
 ///      path: 'resources/langs/langs.csv',
@@ -22,7 +22,7 @@ part 'utils.dart';
 ///    ));
 ///  }
 ///  ```
-class SimpleLocalization extends StatefulWidget {
+class QuickLocalization extends StatefulWidget {
   /// Place for your main page widget.
   final Widget child;
 
@@ -91,17 +91,17 @@ class SimpleLocalization extends StatefulWidget {
   final String path;
 
   /// Class loader for localization files.
-  /// You can use custom loaders from [Simple Localization Loader](https://github.com/aissat/simple_localization_loader) or create your own class.
+  /// You can use custom loaders from [Quick Localization Loader](https://github.com/aissat/quick_localization_loader) or create your own class.
   /// @Default value `const RootBundleAssetLoader()`
   // ignore: prefer_typing_uninitialized_variables
   final AssetLoader assetLoader;
 
   /// Class loader for localization files that belong to other packages.
-  /// You can use custom loaders from [Simple Localization Loader](https://github.com/aissat/simple_localization_loader) or create your own class.
+  /// You can use custom loaders from [Quick Localization Loader](https://github.com/aissat/quick_localization_loader) or create your own class.
   /// Example:
   /// ```dart
   //   runApp(
-  //   SimpleLocalization(
+  //   QuickLocalization(
   //     supportedLocales: const <Locale>[
   //       Locale('en'),
   //     ],
@@ -126,7 +126,7 @@ class SimpleLocalization extends StatefulWidget {
   /// @Default value `errorWidget = ErrorWidget()`
   final Widget Function(FlutterError? message)? errorWidget;
 
-  SimpleLocalization({
+  QuickLocalization({
     Key? key,
     required this.child,
     required this.supportedLocales,
@@ -146,39 +146,39 @@ class SimpleLocalization extends StatefulWidget {
     this.extraAssetLoaders,
     this.saveLocale = true,
     this.errorWidget,
-  }) : assert(supportedLocales.isNotEmpty),
-       assert(path.isNotEmpty),
-       super(key: key) {
-    SimpleLocalization.logger.debug('Start');
+  })  : assert(supportedLocales.isNotEmpty),
+        assert(path.isNotEmpty),
+        super(key: key) {
+    QuickLocalization.logger.debug('Start');
   }
 
   @override
   // ignore: library_private_types_in_public_api
-  _SimpleLocalizationState createState() => _SimpleLocalizationState();
+  _QuickLocalizationState createState() => _QuickLocalizationState();
 
   // ignore: library_private_types_in_public_api
-  static _SimpleLocalizationProvider? of(BuildContext context) =>
-      _SimpleLocalizationProvider.of(context);
+  static _QuickLocalizationProvider? of(BuildContext context) =>
+      _QuickLocalizationProvider.of(context);
 
   /// ensureInitialized needs to be called in main
   /// so that savedLocale is loaded and used from the
   /// start.
   static Future<void> ensureInitialized() async =>
-      await SimpleLocalizationController.initEasyLocation();
+      await QuickLocalizationController.initEasyLocation();
 
   /// Customizable logger
-  static EasyLogger logger = EasyLogger(name: '🌎 Simple Localization');
+  static EasyLogger logger = EasyLogger(name: '🌎 Quick Localization');
 }
 
-class _SimpleLocalizationState extends State<SimpleLocalization> {
-  _SimpleLocalizationDelegate? delegate;
-  SimpleLocalizationController? localizationController;
+class _QuickLocalizationState extends State<QuickLocalization> {
+  _QuickLocalizationDelegate? delegate;
+  QuickLocalizationController? localizationController;
   FlutterError? translationsLoadError;
 
   @override
   void initState() {
-    SimpleLocalization.logger.debug('Init state');
-    localizationController = SimpleLocalizationController(
+    QuickLocalization.logger.debug('Init state');
+    localizationController = QuickLocalizationController(
       saveLocale: widget.saveLocale,
       fallbackLocale: widget.fallbackLocale,
       supportedLocales: widget.supportedLocales,
@@ -209,16 +209,16 @@ class _SimpleLocalizationState extends State<SimpleLocalization> {
 
   @override
   Widget build(BuildContext context) {
-    SimpleLocalization.logger.debug('Build');
+    QuickLocalization.logger.debug('Build');
     if (translationsLoadError != null) {
       return widget.errorWidget != null
           ? widget.errorWidget!(translationsLoadError)
           : ErrorWidget(translationsLoadError!);
     }
-    return _SimpleLocalizationProvider(
+    return _QuickLocalizationProvider(
       widget,
       localizationController!,
-      delegate: _SimpleLocalizationDelegate(
+      delegate: _QuickLocalizationDelegate(
         localizationController: localizationController,
         supportedLocales: widget.supportedLocales,
         useFallbackTranslationsForEmptyResources:
@@ -229,11 +229,11 @@ class _SimpleLocalizationState extends State<SimpleLocalization> {
   }
 }
 
-class _SimpleLocalizationProvider extends InheritedWidget {
-  final SimpleLocalization parent;
-  final SimpleLocalizationController _localeState;
+class _QuickLocalizationProvider extends InheritedWidget {
+  final QuickLocalization parent;
+  final QuickLocalizationController _localeState;
   final Locale? currentLocale;
-  final _SimpleLocalizationDelegate delegate;
+  final _QuickLocalizationDelegate delegate;
   final bool _translationsLoaded;
 
   /// {@macro flutter.widgets.widgetsApp.localizationsDelegates}
@@ -247,26 +247,26 @@ class _SimpleLocalizationProvider extends InheritedWidget {
   ///   ],
   /// ```
   List<LocalizationsDelegate> get delegates => [
-    delegate,
-    GlobalMaterialLocalizations.delegate,
-    GlobalWidgetsLocalizations.delegate,
-    GlobalCupertinoLocalizations.delegate,
-  ];
+        delegate,
+        GlobalMaterialLocalizations.delegate,
+        GlobalWidgetsLocalizations.delegate,
+        GlobalCupertinoLocalizations.delegate,
+      ];
 
   /// Get List of supported locales
   List<Locale> get supportedLocales => parent.supportedLocales;
 
-  // _SimpleLocalizationDelegate get delegate => parent.delegate;
+  // _QuickLocalizationDelegate get delegate => parent.delegate;
 
-  _SimpleLocalizationProvider(
+  _QuickLocalizationProvider(
     this.parent,
     this._localeState, {
     Key? key,
     required this.delegate,
-  }) : currentLocale = _localeState.locale,
-       _translationsLoaded = _localeState.translations != null,
-       super(key: key, child: parent.child) {
-    SimpleLocalization.logger.debug('Init provider');
+  })  : currentLocale = _localeState.locale,
+        _translationsLoaded = _localeState.translations != null,
+        super(key: key, child: parent.child) {
+    QuickLocalization.logger.debug('Init provider');
   }
 
   /// Get current locale
@@ -299,31 +299,31 @@ class _SimpleLocalizationProvider extends InheritedWidget {
   Future<void> resetLocale() => _localeState.resetLocale();
 
   @override
-  bool updateShouldNotify(_SimpleLocalizationProvider oldWidget) {
+  bool updateShouldNotify(_QuickLocalizationProvider oldWidget) {
     return oldWidget.currentLocale != locale ||
         oldWidget._translationsLoaded != _translationsLoaded;
   }
 
-  static _SimpleLocalizationProvider? of(BuildContext context) =>
-      context.dependOnInheritedWidgetOfExactType<_SimpleLocalizationProvider>();
+  static _QuickLocalizationProvider? of(BuildContext context) =>
+      context.dependOnInheritedWidgetOfExactType<_QuickLocalizationProvider>();
 }
 
-class _SimpleLocalizationDelegate extends LocalizationsDelegate<Localization> {
+class _QuickLocalizationDelegate extends LocalizationsDelegate<Localization> {
   final List<Locale>? supportedLocales;
-  final SimpleLocalizationController? localizationController;
+  final QuickLocalizationController? localizationController;
   final bool useFallbackTranslationsForEmptyResources;
   final bool ignorePluralRules;
 
   ///  * use only the lang code to generate i18n file path like en.json or ar.json
   // final bool useOnlyLangCode;
 
-  _SimpleLocalizationDelegate({
+  _QuickLocalizationDelegate({
     required this.useFallbackTranslationsForEmptyResources,
     this.ignorePluralRules = true,
     this.localizationController,
     this.supportedLocales,
   }) {
-    SimpleLocalization.logger.debug('Init Localization Delegate');
+    QuickLocalization.logger.debug('Init Localization Delegate');
   }
 
   @override
@@ -331,7 +331,7 @@ class _SimpleLocalizationDelegate extends LocalizationsDelegate<Localization> {
 
   @override
   Future<Localization> load(Locale value) async {
-    SimpleLocalization.logger.debug('Load Localization Delegate');
+    QuickLocalization.logger.debug('Load Localization Delegate');
     if (localizationController!.translations == null) {
       await localizationController!.loadTranslations();
     }
