@@ -12,7 +12,7 @@ abstract class LocaleKeys {
   static const profile = 'profile';
   static const clicked = 'clicked';
   static const amount = 'amount';
-  static const gender_with_arg = 'gender.with_arg';
+  static const genderWithArg = 'gender.with_arg';
   static const gender = 'gender';
-  static const reset_locale = 'reset_locale';
+  static const resetLocale = 'resetLocale';
 }

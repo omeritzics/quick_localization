@@ -50,8 +50,8 @@ class MyApp extends StatelessWidget {
       localizationsDelegates: context.localizationDelegates,
       supportedLocales: context.supportedLocales,
       locale: context.locale,
-      theme: ThemeData(primarySwatch: Colors.blue),
-      home: MyHomePage(title: 'Easy localization'),
+      theme: ThemeData(primarySwatch: Colors.orange),
+      home: MyHomePage(title: 'Quick localization'),
     );
   }
 }
@@ -107,13 +107,13 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             const Spacer(flex: 1),
             Text(
-              LocaleKeys.gender_with_arg,
+              LocaleKeys.genderWithArg,
               style: TextStyle(
                 color: Colors.grey.shade600,
                 fontSize: 19,
                 fontWeight: FontWeight.bold,
               ),
-            ).tr(args: ['aissat'], gender: _gender ? 'female' : 'male'),
+            ).tr(args: ['omeritzics'], gender: _gender ? 'female' : 'male'),
             Text(
               tr(LocaleKeys.gender, gender: _gender ? 'female' : 'male'),
               style: TextStyle(
@@ -131,9 +131,9 @@ class _MyHomePageState extends State<MyHomePage> {
               ],
             ),
             const Spacer(flex: 1),
-            const Text(LocaleKeys.msg).tr(args: ['aissat', 'Flutter']),
+            const Text(LocaleKeys.msg).tr(args: ['omeritzics', 'Flutter']),
             const Text(LocaleKeys.msg_named)
-                .tr(namedArgs: {'lang': 'Dart'}, args: ['Easy localization']),
+                .tr(namedArgs: {'lang': 'Dart'}, args: ['Quick localization']),
             const Text(LocaleKeys.clicked).plural(counter),
             TextButton(
               onPressed: () {
@@ -162,7 +162,7 @@ class _MyHomePageState extends State<MyHomePage> {
               onPressed: () {
                 context.resetLocale();
               },
-              child: const Text(LocaleKeys.reset_locale).tr(),
+              child: const Text(LocaleKeys.resetLocale).tr(),
             ),
             const Spacer(flex: 1),
           ],

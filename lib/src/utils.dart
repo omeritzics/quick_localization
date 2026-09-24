@@ -29,7 +29,7 @@ String localeToString(Locale locale, {String separator = '_'}) {
   return locale.toString().split('_').join(separator);
 }
 
-/// [Easy Localization] locale helper
+/// [Quick Localization] locale helper
 extension LocaleToStringHelper on Locale {
   /// Convert [locale] to String with custom separator
   String toStringWithSeparator({String separator = '_'}) {
@@ -37,7 +37,7 @@ extension LocaleToStringHelper on Locale {
   }
 }
 
-/// [Easy Localization] string locale helper
+/// [Quick Localization] string locale helper
 extension StringToLocaleHelper on String {
   /// Convert string to [Locale] object
   Locale toLocale({String separator = '_'}) {

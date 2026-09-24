@@ -164,7 +164,7 @@ class QuickLocalization extends StatefulWidget {
   /// so that savedLocale is loaded and used from the
   /// start.
   static Future<void> ensureInitialized() async =>
-      await QuickLocalizationController.initEasyLocation();
+      await QuickLocalizationController.initQuickLocation();
 
   /// Customizable logger
   static EasyLogger logger = EasyLogger(name: '🌎 Quick Localization');

@@ -213,7 +213,7 @@ class QuickLocalizationController extends ChangeNotifier {
     QuickLocalization.logger('Locale $locale saved');
   }
 
-  static Future<void> initEasyLocation() async {
+  static Future<void> initQuickLocation() async {
     final preferences = await SharedPreferences.getInstance();
     final strLocale = preferences.getString('locale');
     _savedLocale = strLocale?.toLocale();

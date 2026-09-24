@@ -47,7 +47,7 @@ class CodegenLoader extends AssetLoader {
       "female": " مرحبا بك يا فتاة",
       "with_arg": {"male": "{} مرحبا يا رجل", "female": "{} مرحبا بك يا فتاة"},
     },
-    "reset_locale": "إعادة ضبط اللغة",
+    "resetLocale": "إعادة ضبط اللغة",
   };
   static const Map<String, dynamic> _ar = {
     "title": "السلام",
@@ -82,7 +82,7 @@ class CodegenLoader extends AssetLoader {
       "female": " مرحبا بك يا فتاة",
       "with_arg": {"male": "{} مرحبا يا رجل", "female": "{} مرحبا بك يا فتاة"},
     },
-    "reset_locale": "إعادة ضبط اللغة",
+    "resetLocale": "إعادة ضبط اللغة",
   };
   static const Map<String, dynamic> _de_DE = {
     "title": "Hallo",
@@ -117,7 +117,7 @@ class CodegenLoader extends AssetLoader {
       "female": "Hallo Frau :)",
       "with_arg": {"male": "Hi Mann ;) {}", "female": "Hallo Frau :) {}"},
     },
-    "reset_locale": "Sprache zurücksetzen",
+    "resetLocale": "Sprache zurücksetzen",
   };
   static const Map<String, dynamic> _de = {
     "title": "Hallo",
@@ -152,7 +152,7 @@ class CodegenLoader extends AssetLoader {
       "female": "Hallo Frau :)",
       "with_arg": {"male": "Hi Mann ;) {}", "female": "Hallo Frau :) {}"},
     },
-    "reset_locale": "Sprache zurücksetzen",
+    "resetLocale": "Sprache zurücksetzen",
   };
   static const Map<String, dynamic> _en_US = {
     "title": "Hello",
@@ -185,7 +185,7 @@ class CodegenLoader extends AssetLoader {
       "female": "Hello girl :)",
       "with_arg": {"male": "Hi man ;) {}", "female": "Hello girl :) {}"},
     },
-    "reset_locale": "Reset Language",
+    "resetLocale": "Reset Language",
   };
   static const Map<String, dynamic> _en = {
     "title": "Hello",
@@ -220,7 +220,7 @@ class CodegenLoader extends AssetLoader {
       "female": "Hello girl :)",
       "with_arg": {"male": "Hi man ;) {}", "female": "Hello girl :) {}"},
     },
-    "reset_locale": "Reset Language",
+    "resetLocale": "Reset Language",
   };
   static const Map<String, dynamic> _ru_RU = {
     "title": "Привет!",
@@ -258,7 +258,7 @@ class CodegenLoader extends AssetLoader {
         "female": "Привет девчуля :) {}",
       },
     },
-    "reset_locale": "Сбросить язык",
+    "resetLocale": "Сбросить язык",
   };
   static const Map<String, dynamic> _ru = {
     "title": "Привет!",
@@ -296,7 +296,7 @@ class CodegenLoader extends AssetLoader {
         "female": "Привет девчуля :) {}",
       },
     },
-    "reset_locale": "Сбросить язык",
+    "resetLocale": "Сбросить язык",
   };
   static const Map<String, dynamic> _ku = {
     "title": "سڵاو",
@@ -334,7 +334,7 @@ class CodegenLoader extends AssetLoader {
         "female": "{} سڵاو کچەکەم :)",
       },
     },
-    "reset_locale": "گۆڕینی زمان",
+    "resetLocale": "گۆڕینی زمان",
   };
   static const Map<String, Map<String, dynamic>> mapLocales = {
     "ar_DZ": _ar_DZ,

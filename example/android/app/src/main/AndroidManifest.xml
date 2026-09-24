@@ -1,5 +1,5 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.aissat.example.example">
+    package="io.omeritzics.example.example">
    <application
         android:label="exmple"
         android:icon="@mipmap/ic_launcher">

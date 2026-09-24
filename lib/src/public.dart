@@ -16,7 +16,7 @@ import 'localization.dart';
 /// ```json
 /// {
 ///    "msg":"{} are written in the {} language",
-///    "msg_named":"Easy localization is written in the {lang} language",
+///    "msg_named":"Quick localization is written in the {lang} language",
 ///    "msg_mixed":"{} are written in the {lang} language",
 ///    "gender":{
 ///       "male":"Hi man ;) {}",
@@ -26,9 +26,9 @@ import 'localization.dart';
 /// }
 /// ```
 /// ```dart
-/// Text('msg').tr(args: ['Easy localization', 'Dart']), // args
+/// Text('msg').tr(args: ['Quick localization', 'Dart']), // args
 /// Text('msg_named').tr(namedArgs: {'lang': 'Dart'}),   // namedArgs
-/// Text('msg_mixed').tr(args: ['Easy localization'], namedArgs: {'lang': 'Dart'}), // args and namedArgs
+/// Text('msg_mixed').tr(args: ['Quick localization'], namedArgs: {'lang': 'Dart'}), // args and namedArgs
 /// Text('gender').tr(gender: _gender ? "female" : "male"), // gender
 /// ```
 /// {@endtemplate}

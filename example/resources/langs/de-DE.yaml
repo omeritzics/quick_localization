@@ -27,4 +27,4 @@ gender:
   with_arg:
     male: Hi Mann ;) {}
     female: Hallo Frau :) {}
-reset_locale: Sprache zurücksetzen
+resetLocale: Sprache zurücksetzen

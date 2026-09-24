@@ -193,7 +193,7 @@ extension BuildContextQuickLocalizationExtension on BuildContext {
   /// ```json
   /// {
   ///    "msg":"{} are written in the {} language",
-  ///    "msg_named":"Easy localization is written in the {lang} language",
+  ///    "msg_named":"Quick localization is written in the {lang} language",
   ///    "msg_mixed":"{} are written in the {lang} language",
   ///    "gender":{
   ///       "male":"Hi man ;) {}",
@@ -203,9 +203,9 @@ extension BuildContextQuickLocalizationExtension on BuildContext {
   /// }
   /// ```
   /// ```dart
-  /// Text(context.tr('msg', args: ['Easy localization', 'Dart']), // args
+  /// Text(context.tr('msg', args: ['Quick localization', 'Dart']), // args
   /// Text(context.tr('msg_named', namedArgs: {'lang': 'Dart'}),   // namedArgs
-  /// Text(context.tr('msg_mixed', args: ['Easy localization'], namedArgs: {'lang': 'Dart'}), // args and namedArgs
+  /// Text(context.tr('msg_mixed', args: ['Quick localization'], namedArgs: {'lang': 'Dart'}), // args and namedArgs
   /// Text(context.tr('gender', gender: _gender ? "female" : "male"), // gender
   /// ```
   String tr(

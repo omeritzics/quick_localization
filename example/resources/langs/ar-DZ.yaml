@@ -27,4 +27,4 @@ gender:
   with_arg:
     male: "{} مرحبا يا رجل"
     female: "{} مرحبا بك يا فتاة"
-reset_locale: إعادة ضبط اللغة
+resetLocale: إعادة ضبط اللغة

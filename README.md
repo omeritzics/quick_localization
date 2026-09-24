@@ -446,7 +446,7 @@ RaisedButton(
   onPressed: (){
     context.resetLocale();
   },
-  child: Text(LocaleKeys.reset_locale).tr(),
+  child: Text(LocaleKeys.resetLocale).tr(),
 )
 ```
 
@@ -471,7 +471,7 @@ RaisedButton(
   onPressed: (){
     context.deleteSaveLocale();
   },
-  child: Text(LocaleKeys.reset_locale).tr(),
+  child: Text(LocaleKeys.resetLocale).tr(),
 )
 ```
 

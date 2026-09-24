@@ -67,7 +67,7 @@
 
 ```
 
-### [example/lib/main.dart](https://github.com/aissat/quick_localization/blob/master/example/lib/main.dart)
+### [example/lib/main.dart](https://github.com/omeritzics/quick_localization/blob/master/example/lib/main.dart)
 
 ```dart
 import 'dart:developer';
@@ -81,9 +81,9 @@ import 'package:quick_localization/quick_localization.dart';
 void main() async{
   
   // WidgetsFlutterBinding.ensureInitialized();
-  await EasyLocalization.ensureInitialized();
+  await QuickLocalization.ensureInitialized();
 
-  runApp(EasyLocalization(
+  runApp(QuickLocalization(
     child: MyApp(),
     supportedLocales: [Locale('en', 'US'), Locale('ar', 'DZ')],
     path: 'resources/langs',
@@ -109,21 +109,21 @@ void main() async{
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    log( EasyLocalization.of(context).locale.toString(), name: this.toString()+"# locale" );
+    log( QuickLocation.of(context).locale.toString(), name: this.toString()+"# locale" );
     log( Intl.defaultLocale.toString(), name: this.toString()+"# Intl.defaultLocale" );
     return MaterialApp(
       title: 'Flutter Demo',
       localizationsDelegates: [
         GlobalMaterialLocalizations.delegate,
         GlobalWidgetsLocalizations.delegate,
-        EasyLocalization.of(context).delegate,
+        QuickLocation.of(context).delegate,
       ],
-      supportedLocales: EasyLocalization.of(context).supportedLocales,
-      locale: EasyLocalization.of(context).locale,
+      supportedLocales: QuickLocation.of(context).supportedLocales,
+      locale: QuickLocation.of(context).locale,
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: MyHomePage(title: 'Easy localization'),
+      home: MyHomePage(title: 'Quick localization'),
     );
   }
 }
@@ -186,7 +186,7 @@ class _MyHomePageState extends State<MyHomePage> {
                   color: Colors.grey.shade600,
                   fontSize: 19,
                   fontWeight: FontWeight.bold),
-            ).tr(args: ["aissat"], gender: _gender ? "female" : "male"),
+            ).tr(args: ["omeritzics"], gender: _gender ? "female" : "male"),
             Text(
               tr('switch', gender: _gender ? "female" : "male"),
               style: TextStyle(
@@ -205,7 +205,7 @@ class _MyHomePageState extends State<MyHomePage> {
             Spacer(
               flex: 1,
             ),
-            Text('msg').tr(args: ['aissat', 'Flutter']),
+            Text('msg').tr(args: ['omeritzics', 'Flutter']),
             Text('clicked').plural(counter),
             FlatButton(
               onPressed: () {
@@ -342,7 +342,7 @@ class LanguageView extends StatelessWidget {
           ),
           onTap: () {
             log(locale.toString(), name: this.toString());
-            EasyLocalization.of(context).locale = locale;
+            QuickLocation.of(context).locale = locale;
           }),
     );
   }
